@@ -1,0 +1,9 @@
+{
+  "name": "central-de-comando-projeto-beleza",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Central de comando do projeto de beleza — HTML estático + função Netlify para guardar dados na nuvem (Netlify Blobs).",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
