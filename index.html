@@ -46,9 +46,10 @@
     top: 0;
     z-index: 90;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 16px 0;
+    gap: 10px;
+    padding: 16px 24px;
     margin: -32px -24px 24px;
     background: rgba(250, 247, 245, 0.82);
     backdrop-filter: blur(10px) saturate(140%);
@@ -56,8 +57,6 @@
     border-bottom: 1px solid var(--line);
   }
   .cloud-sync-badge {
-    position: absolute;
-    right: 24px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -71,6 +70,7 @@
     cursor: pointer;
     letter-spacing: 0.02em;
     transition: border-color 0.25s ease, color 0.25s ease;
+    align-self: center;
   }
   .cloud-sync-badge:hover { border-color: var(--accent-light); color: var(--ink); }
   .cloud-sync-dot {
@@ -88,18 +88,17 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.75); }
   }
-  @media (max-width: 720px) {
-    .cloud-sync-badge { position: static; margin-top: 10px; }
-    .top-nav { flex-wrap: wrap; }
-  }
   .top-nav-inner {
     display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
     background: var(--card);
     border: 1.5px solid var(--line);
     border-radius: 999px;
     padding: 5px;
     box-shadow: 0 8px 20px rgba(43, 35, 32, 0.08);
+    max-width: 100%;
   }
   .top-nav-btn {
     font-family: inherit;
@@ -326,6 +325,168 @@
     box-shadow: 0 18px 36px rgba(43, 35, 32, 0.14);
     border-color: var(--accent-light);
   }
+  .extensions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .extension-card {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 20px 22px;
+    transition: transform 0.32s cubic-bezier(.2,.8,.2,1), box-shadow 0.32s cubic-bezier(.2,.8,.2,1), border-color 0.25s ease;
+  }
+  .extension-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(43, 35, 32, 0.14);
+    border-color: var(--accent-light);
+  }
+  .extension-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .extension-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    overflow: hidden;
+  }
+  .extension-icon svg { width: 26px; height: 26px; }
+  .extension-card-title { font-weight: 800; font-size: 15px; }
+  .extension-status {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 3px 9px;
+    margin-top: 2px;
+  }
+  .extension-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .extension-card-note {
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 8px 10px;
+    line-height: 1.5;
+    display: none;
+    margin-bottom: 10px;
+  }
+  .extension-card-note.open { display: block; }
+  .extension-card-actions { display: flex; gap: 8px; }
+  .extension-card-actions button {
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+  }
+  .extension-card-actions button.primary {
+    background: var(--grad-accent);
+    color: #fff;
+    border: none;
+  }
+  .ads-form-group-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-dark);
+    margin: 18px 0 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .ads-form-group-title:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .ads-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  @media (max-width: 720px) {
+    .ads-board { grid-template-columns: 1fr; }
+  }
+  .ads-col {
+    background: var(--accent-soft);
+    border-radius: 18px;
+    padding: 14px;
+    min-height: 140px;
+  }
+  .ads-col-title {
+    font-weight: 800;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-dark);
+    margin-bottom: 12px;
+  }
+  .ads-col-body { display: flex; flex-direction: column; gap: 10px; }
+  .ads-col-empty { color: var(--muted); font-size: 12.5px; padding: 6px 2px; }
+  .ads-campaign-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 12px rgba(43, 35, 32, 0.08);
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    font-family: inherit;
+    width: 100%;
+    transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s cubic-bezier(.2,.8,.2,1);
+  }
+  .ads-campaign-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(43, 35, 32, 0.14);
+  }
+  .ads-campaign-card-title { font-size: 13.5px; font-weight: 700; margin-bottom: 4px; }
+  .ads-campaign-card-meta { font-size: 11.5px; color: var(--muted); }
+  .ads-modal-group { margin-bottom: 18px; }
+  .ads-modal-group-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-dark);
+    margin-bottom: 8px;
+  }
+  .cerebro-history-item {
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .cerebro-history-q { font-size: 12.5px; margin-bottom: 6px; }
+  .cerebro-history-q strong { color: var(--accent-dark); }
+  .cerebro-history-a { font-size: 12.5px; color: var(--muted); line-height: 1.5; white-space: pre-line; }
+  .roteiro-mark-btns { display: inline-flex; gap: 4px; margin-left: 8px; }
+  .roteiro-mark-btns button {
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .roteiro-mark-btns button:hover { border-color: var(--accent-light); color: var(--ink); }
+  .roteiro-mark-btns button.marked { background: var(--grad-accent); color: #fff; border: none; }
   .content-calendar-header {
     display: flex;
     align-items: center;
@@ -475,6 +636,11 @@
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+  .tool-ia-btn {
+    margin-top: 16px;
+    width: 100%;
+  }
+  .tool-ia-btn:disabled { opacity: 0.65; cursor: default; }
   .tool-pull-btn {
     font-family: inherit;
     font-size: 12px;
@@ -1787,6 +1953,8 @@
       <button type="button" id="navFinanceiro" class="top-nav-btn" onclick="switchView('financeiro')">Financeiro</button>
       <button type="button" id="navMetricas" class="top-nav-btn" onclick="switchView('metricas')">Métricas</button>
       <button type="button" id="navConteudo" class="top-nav-btn" onclick="switchView('conteudo')">Conteúdo</button>
+      <button type="button" id="navExtensoes" class="top-nav-btn" onclick="switchView('extensoes')">Extensões</button>
+      <button type="button" id="navAds" class="top-nav-btn" onclick="switchView('ads')">ADS</button>
     </div>
     <div id="cloudSyncBadge" class="cloud-sync-badge cloud-sync-idle" onclick="toggleCloudTokenPrompt()" title="Status da sincronização com a nuvem">
       <span class="cloud-sync-dot"></span>
@@ -1811,6 +1979,11 @@
     </div>
 
     <div class="tool-cards-grid" id="toolCardsGrid">
+      <button type="button" class="tool-card" onclick="openTool('cerebro')">
+        <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 00-3 3 3 3 0 00-1.5 5.6A3.2 3.2 0 007 18a3 3 0 002.6-1.5M9 4a3 3 0 013 3v9a3 3 0 01-2.4 2.9M9 4v13M15 4a3 3 0 013 3 3 3 0 011.5 5.6A3.2 3.2 0 0117 18a3 3 0 01-2.6-1.5M15 4a3 3 0 00-3 3M15 4v13"/></svg></span></div>
+        <div class="tool-card-title">Cérebro Central</div>
+        <div class="tool-card-desc">Pergunta livre pra uma IA que enxerga tudo que está guardado hoje na central — conteúdo, métricas, comissões e base de conhecimento — de uma vez só</div>
+      </button>
       <button type="button" class="tool-card" onclick="openTool('roteiro')">
         <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l1.5-3h3L6 8"/><path d="M9 8l1.5-3h3L12 8"/><path d="M15 8l1.5-3h3L18 8"/><rect x="3" y="8" width="18" height="11" rx="1.5"/></svg></span></div>
         <div class="tool-card-title">Assistente de Roteiro</div>
@@ -1845,6 +2018,26 @@
         <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M4 8v10a2 2 0 002 2h12a2 2 0 002-2V8M10 13h4"/></svg></span></div>
         <div class="tool-card-title">Backup de Dados</div>
         <div class="tool-card-desc">Exporta tudo que está salvo neste navegador (métricas, comissões, tarefas, base de conhecimento) num arquivo — e importa de volta se precisar</div>
+      </button>
+      <button type="button" class="tool-card" onclick="openTool('espiao')">
+        <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+        <div class="tool-card-title">Espião Semanal</div>
+        <div class="tool-card-desc">Cole os comentários/posts da semana de um canal e a IA lê tudo pra achar temas, dúvidas, sentimento e alertas de reclamação</div>
+      </button>
+      <button type="button" class="tool-card" onclick="openTool('engenheiro')">
+        <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l1.5 1.5M15 9l-1.5 1.5M9 15h6M12 12v.01"/></svg></span></div>
+        <div class="tool-card-title">Engenheiro Reverso de Concorrentes</div>
+        <div class="tool-card-desc">Cole anúncios de contas parecidas com a de vocês e a IA extrai a promessa, os gatilhos, o CTA e onde tem espaço pra se diferenciar</div>
+      </button>
+      <button type="button" class="tool-card" onclick="openTool('trendhunter')">
+        <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span></div>
+        <div class="tool-card-title">Trend Hunter</div>
+        <div class="tool-card-desc">Junta o que já performou bem, os comentários do Espião e temas que vocês colarem, e devolve pautas prontas por quadro</div>
+      </button>
+      <button type="button" class="tool-card" onclick="openTool('pautista')">
+        <div class="tool-card-icon"><span class="icon-chip icon-chip-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/><path d="M8 14l2 2 4-4"/></svg></span></div>
+        <div class="tool-card-title">Pautista Estratégico Preditivo</div>
+        <div class="tool-card-desc">Junta datas do mês, objetivo e tudo que os outros agentes já levantaram, e monta o plano de conteúdo do mês inteiro</div>
       </button>
     </div>
 
@@ -1882,6 +2075,10 @@
         <div class="tool-field">
           <label>Tempo estimado de produção (minutos, opcional)</label>
           <input type="number" id="vbTempo" min="0" placeholder="Ex: 40">
+        </div>
+        <div class="tool-field">
+          <label>Custo estimado de impulsionamento (R$, opcional)</label>
+          <input type="number" id="vbCustoAnuncio" min="0" step="0.01" placeholder="Ex: 30 (deixe em branco se não for anunciar)">
         </div>
       </div>
 
@@ -1946,15 +2143,25 @@
         </div>
         <div id="csHistoryList"></div>
       </div>
+
+      <div class="metric-chart-box" style="margin-top:20px;">
+        <select id="csChartPlataforma" onchange="renderComissaoChart()"></select>
+        <div id="csChart"></div>
+      </div>
     </div>
 
     <div id="toolPrioridade" class="tool-panel">
       <button type="button" class="tool-back" onclick="closeTool('prioridade')">← Voltar pras ferramentas</button>
       <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg></span>Central de Prioridade do Dia</h3>
       <p class="subtitle">Junta o banco de ideias da aba Conteúdo com as tendências mais recentes da aba Métricas e sugere o foco de hoje</p>
-      <button type="button" class="tool-generate-btn" onclick="gerarPrioridadeDoDia()"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>Analisar e sugerir foco</button>
+      <button type="button" class="tool-generate-btn" onclick="gerarPrioridadeDoDia()"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>Analisar e sugerir foco (regras fixas, instantâneo)</button>
       <div id="prioridadeOutputBox" class="tool-output-box" style="display:none;">
         <div class="tool-result-card" id="prioridadeResultCard"></div>
+      </div>
+
+      <button type="button" class="tool-generate-btn tool-ia-btn" onclick="gerarPrioridadeComIA()" id="prioridadeIaBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Gerar sugestão com IA (considera nuance, não só regra fixa)</button>
+      <div id="prioridadeIaOutputBox" class="tool-output-box" style="display:none; margin-top:12px;">
+        <div class="tool-result-card" id="prioridadeIaResultCard"></div>
       </div>
     </div>
 
@@ -1979,12 +2186,30 @@
         <div class="compare-product-col">
           <h4>Produto A</h4>
           <div class="tool-field"><label>Nome</label><input type="text" id="cpNomeA" placeholder="Ex: sérum A"></div>
+          <div class="tool-field">
+            <label>Plataforma</label>
+            <select id="cpPlataformaA">
+              <option value="Shopee">Shopee (até 30% — não oficial)</option>
+              <option value="Amazon">Amazon</option>
+              <option value="Mercado Livre">Mercado Livre</option>
+              <option value="Hotmart">Hotmart (infoproduto)</option>
+            </select>
+          </div>
           <div class="tool-field"><label>Preço (R$)</label><input type="number" id="cpPrecoA" min="0" step="0.01" value="80"></div>
           <div class="tool-field"><label>Comissão (%)</label><input type="number" id="cpComissaoA" min="0" max="100" step="0.1" value="20"></div>
         </div>
         <div class="compare-product-col">
           <h4>Produto B</h4>
           <div class="tool-field"><label>Nome</label><input type="text" id="cpNomeB" placeholder="Ex: sérum B"></div>
+          <div class="tool-field">
+            <label>Plataforma</label>
+            <select id="cpPlataformaB">
+              <option value="Shopee">Shopee (até 30% — não oficial)</option>
+              <option value="Amazon">Amazon</option>
+              <option value="Mercado Livre">Mercado Livre</option>
+              <option value="Hotmart">Hotmart (infoproduto)</option>
+            </select>
+          </div>
           <div class="tool-field"><label>Preço (R$)</label><input type="number" id="cpPrecoB" min="0" step="0.01" value="80"></div>
           <div class="tool-field"><label>Comissão (%)</label><input type="number" id="cpComissaoB" min="0" max="100" step="0.1" value="20"></div>
         </div>
@@ -1998,13 +2223,156 @@
     <div id="toolBackup" class="tool-panel">
       <button type="button" class="tool-back" onclick="closeTool('backup')">← Voltar pras ferramentas</button>
       <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M4 8v10a2 2 0 002 2h12a2 2 0 002-2V8M10 13h4"/></svg></span>Backup de Dados</h3>
-      <p class="subtitle">Tudo aqui (métricas, comissões, tarefas, base de conhecimento do roteiro) fica salvo só neste navegador. Se limpar o cache ou trocar de aparelho, os dados somem — exporte de vez em quando pra não perder nada.</p>
-      <button type="button" class="tool-generate-btn" onclick="exportarBackup()">⬇️ Exportar backup (.json)</button>
+      <p class="subtitle">Os dados (métricas, comissões, tarefas, base de conhecimento do roteiro, ADS, histórico do Cérebro Central) já ficam sincronizados automaticamente na nuvem — se você limpar o cache ou trocar de aparelho, eles voltam sozinhos ao abrir a central de novo. Esse backup aqui é uma segunda camada de proteção: um arquivo local extra, útil se a nuvem cair ou pra guardar uma cópia fora da central.</p>
+      <button type="button" class="tool-generate-btn" onclick="exportarBackup()"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M7 11l5 5 5-5M4 21h16"/></svg></span>Exportar backup (.json)</button>
       <div class="tool-field" style="margin-top:20px;">
         <label>Importar backup</label>
         <input type="file" id="backupFileInput" accept="application/json" onchange="importarBackup(event)">
       </div>
       <div id="backupStatus" class="tool-metric-hint" style="display:none;"></div>
+    </div>
+
+    <div id="toolEspiao" class="tool-panel">
+      <button type="button" class="tool-back" onclick="closeTool('espiao')">← Voltar pras ferramentas</button>
+      <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg></span>Espião Semanal</h3>
+      <p class="subtitle">Não existe API grátis pra ler comentário de Instagram/TikTok/Shopee direto — então a ideia aqui é vocês colarem uma vez por semana os comentários/posts do canal, e a IA lê tudo de uma vez: acha os temas que mais aparecem, as perguntas reais do público, o sentimento geral e avisa se tiver reclamação repetida sobre algum produto.</p>
+
+      <div class="tool-form-grid">
+        <div class="tool-field">
+          <label>Canal</label>
+          <select id="espCanal">
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram/Reels">Instagram/Reels</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Shopee Vídeo">Shopee Vídeo</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="tool-field">
+          <label>Período analisado</label>
+          <input type="text" id="espPeriodo" placeholder="Ex: 04/08 a 10/08">
+        </div>
+      </div>
+
+      <div class="tool-field">
+        <label>Cole aqui os comentários e/ou legendas dos posts da semana (um por linha, ou como vier ao copiar)</label>
+        <textarea id="espTexto" rows="10" placeholder="Cole aqui o texto copiado dos comentários e posts recentes do canal..."></textarea>
+      </div>
+
+      <button type="button" class="tool-generate-btn" onclick="analisarEspiaoSemanal()" id="espBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Analisar com IA</button>
+
+      <div id="espOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+        <div class="tool-result-card" id="espResultCard"></div>
+      </div>
+
+      <div class="ads-form-group-title">Relatórios anteriores</div>
+      <div id="espHistoricoBox"></div>
+    </div>
+
+    <div id="toolEngenheiro" class="tool-panel">
+      <button type="button" class="tool-back" onclick="closeTool('engenheiro')">← Voltar pras ferramentas</button>
+      <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l1.5 1.5M15 9l-1.5 1.5M9 15h6M12 12v.01"/></svg></span>Engenheiro Reverso de Concorrentes</h3>
+      <p class="subtitle">A Biblioteca de Anúncios do Meta é pública — busque contas de beleza/skincare parecidas com a de vocês que estão anunciando, copie o texto de 3 a 5 anúncios ativos e cole abaixo. A IA desmonta a fórmula que estão usando: promessa, gatilho, CTA e onde dá pra fazer diferente.</p>
+
+      <div class="tool-field">
+        <label>Cole aqui os textos dos anúncios (separe cada anúncio por uma linha em branco)</label>
+        <textarea id="engTexto" rows="10" placeholder="Cole aqui o texto primário, título e descrição de cada anúncio concorrente..."></textarea>
+      </div>
+      <div class="tool-field">
+        <label>Observação de contexto (opcional)</label>
+        <input type="text" id="engContexto" placeholder="Ex: são todos anúncios de sérum facial, achados na Biblioteca de Anúncios do Meta">
+      </div>
+
+      <button type="button" class="tool-generate-btn" onclick="analisarEngenheiroReverso()" id="engBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Analisar padrões</button>
+
+      <div id="engOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+        <div class="tool-result-card" id="engResultCard"></div>
+      </div>
+
+      <div class="ads-form-group-title">Análises anteriores</div>
+      <div id="engHistoricoBox"></div>
+    </div>
+
+    <div id="toolTrendhunter" class="tool-panel">
+      <button type="button" class="tool-back" onclick="closeTool('trendhunter')">← Voltar pras ferramentas</button>
+      <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-9"/><path d="M15 6h5v5"/></svg></span>Trend Hunter</h3>
+      <p class="subtitle">Junta sozinho o que já performou bem (aprendizado automático do Assistente de Roteiro) e o relatório mais recente do Espião Semanal, mais qualquer tema extra que vocês colarem (do AnswerThePublic ou de qualquer outra fonte), e devolve pautas prontas já classificadas por quadro.</p>
+
+      <div class="tool-field">
+        <label>Temas/perguntas extras (opcional — cole aqui buscas do AnswerThePublic ou ideias soltas)</label>
+        <textarea id="thExtras" rows="5" placeholder="Ex: como saber se o protetor solar venceu / sérum de vitamina C mancha a roupa? / ..."></textarea>
+      </div>
+
+      <div id="thContextoResumo" class="tool-metric-hint"></div>
+
+      <button type="button" class="tool-generate-btn" onclick="gerarPautasTrendHunter()" id="thBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></span>Gerar pautas</button>
+
+      <div id="thOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+        <div id="thPautasList"></div>
+      </div>
+
+      <div class="ads-form-group-title">Levas anteriores</div>
+      <div id="thHistoricoBox"></div>
+    </div>
+
+    <div id="toolPautista" class="tool-panel">
+      <button type="button" class="tool-back" onclick="closeTool('pautista')">← Voltar pras ferramentas</button>
+      <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/><path d="M8 14l2 2 4-4"/></svg></span>Pautista Estratégico Preditivo</h3>
+      <p class="subtitle">Junta tudo que a central sabe hoje (Conteúdo, Métricas, Comissões, ADS), as pautas mais recentes do Trend Hunter, os relatórios do Espião e do Engenheiro Reverso, e monta um plano de conteúdo do mês, semana a semana.</p>
+
+      <div class="tool-form-grid">
+        <div class="tool-field">
+          <label>Mês de planejamento</label>
+          <input type="text" id="ptMes" placeholder="Ex: Outubro de 2026">
+        </div>
+        <div class="tool-field">
+          <label>Objetivo do mês</label>
+          <input type="text" id="ptObjetivo" placeholder="Ex: aumentar comissão líquida em 20%">
+        </div>
+      </div>
+      <div class="tool-field">
+        <label>Datas e eventos relevantes do mês (opcional)</label>
+        <textarea id="ptDatas" rows="4" placeholder="Ex: Dia das Crianças (12/10), início do calor pede mais protetor solar, Black Friday se aproximando..."></textarea>
+      </div>
+
+      <button type="button" class="tool-generate-btn" onclick="gerarPautaMestraDoMes()" id="ptBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Gerar pauta mestra do mês</button>
+
+      <div id="ptOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+        <div class="tool-output-header">
+          <span>Pauta mestra</span>
+          <button type="button" onclick="copiarPautaMestra()">Copiar</button>
+        </div>
+        <textarea id="ptOutput" rows="16" readonly></textarea>
+      </div>
+
+      <div class="ads-form-group-title">Meses anteriores</div>
+      <div id="ptHistoricoBox"></div>
+    </div>
+
+    <div id="toolCerebro" class="tool-panel">
+      <button type="button" class="tool-back" onclick="closeTool('cerebro')">← Voltar pras ferramentas</button>
+      <h3 class="tool-panel-title"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 00-3 3 3 3 0 00-1.5 5.6A3.2 3.2 0 007 18a3 3 0 002.6-1.5M9 4a3 3 0 013 3v9a3 3 0 01-2.4 2.9M9 4v13M15 4a3 3 0 013 3 3 3 0 011.5 5.6A3.2 3.2 0 0117 18a3 3 0 01-2.6-1.5M15 4a3 3 0 00-3 3M15 4v13"/></svg></span>Cérebro Central</h3>
+      <p class="subtitle">Pergunte o que quiser — antes de responder, o site junta o que está guardado hoje em Conteúdo, Métricas, Comissões, ADS e na base de conhecimento do Assistente de Roteiro, e manda tudo isso junto com sua pergunta pra IA.</p>
+
+      <div id="cerebroContextoResumo" class="tool-metric-hint"></div>
+
+      <div class="tool-field">
+        <label>Sua pergunta</label>
+        <textarea id="cerebroPergunta" rows="4" placeholder="Ex: no que eu deveria focar essa semana? Por que o engajamento do TikTok caiu? Vale a pena repetir o quadro X esse mês?"></textarea>
+      </div>
+
+      <button type="button" class="tool-generate-btn" onclick="perguntarCerebroCentral()" id="cerebroBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Perguntar pro Cérebro Central</button>
+
+      <div id="cerebroOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+        <div class="tool-output-header">
+          <span>Resposta</span>
+          <button type="button" onclick="copiarRespostaCerebro()">Copiar</button>
+        </div>
+        <textarea id="cerebroOutput" rows="14" readonly></textarea>
+      </div>
+
+      <div class="ads-form-group-title">Histórico de perguntas</div>
+      <div id="cerebroHistoricoBox"></div>
     </div>
 
     <div id="toolRoteiro" class="tool-panel">
@@ -2055,9 +2423,14 @@
       </div>
 
       <div class="tool-kb-box">
-        <div class="tool-kb-title">Base de conhecimento da marca <span class="tool-kb-hint">(fica salva e cresce com o tempo)</span></div>
+        <div class="tool-kb-title">Aprendizados automáticos <span class="tool-kb-hint">(gerado sozinho, cruzando Conteúdo publicado com Métricas — sem digitar nada)</span></div>
+        <div id="rtAprendizadosAuto" class="tool-metric-hint" style="white-space:pre-line;"></div>
+      </div>
+
+      <div class="tool-kb-box">
+        <div class="tool-kb-title">Base de conhecimento da marca <span class="tool-kb-hint">(manual — fica salva e cresce com o tempo)</span></div>
         <div class="tool-field">
-          <label>Aprendizados anteriores</label>
+          <label>Aprendizados anteriores (escritos por vocês)</label>
           <textarea id="rtAprendizados" rows="3" placeholder="Ex: vídeo sobre X teve engajamento alto porque Y; formato Z não performou..."></textarea>
         </div>
         <div class="tool-field">
@@ -2078,6 +2451,15 @@
           <button type="button" id="rtCopyBtn" onclick="copiarPromptRoteiro()">Copiar</button>
         </div>
         <textarea id="rtOutput" rows="16" readonly></textarea>
+        <button type="button" class="tool-generate-btn tool-ia-btn" onclick="gerarRoteiroComIA()" id="rtIaBtn"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>Gerar roteiro automático com IA (Gemini)</button>
+        <div id="rtIaHint" class="tool-metric-hint" style="margin-top:10px;">Isso envia o prompt acima pra uma IA (Google Gemini, gratuita) e já traz o roteiro pronto, direto aqui — sem precisar copiar e colar em outro site.</div>
+        <div id="rtIaOutputBox" class="tool-output-box" style="display:none; margin-top:14px;">
+          <div class="tool-output-header">
+            <span>Roteiro gerado pela IA</span>
+            <button type="button" onclick="copiarRoteiroIA()">Copiar</button>
+          </div>
+          <textarea id="rtIaOutput" rows="16" readonly></textarea>
+        </div>
       </div>
     </div>
   </div>
@@ -2167,6 +2549,52 @@
       </div>
       <div class="content-calendar-grid" id="calendarGrid"></div>
       <div class="content-calendar-day-list" id="calendarDayList"></div>
+    </div>
+  </div>
+
+  <div id="viewExtensoes" class="view-panel">
+    <div class="todo-header">
+      <h2>Extensões</h2>
+      <p class="subtitle">Ferramentas externas que dá pra ligar na central, uma de cada vez — os ícones abaixo são representativos (cores e formato de cada produto), não os arquivos de logo oficiais de cada empresa.</p>
+    </div>
+
+    <div class="extensions-grid" id="extensionsGrid"></div>
+  </div>
+
+  <div id="viewAds" class="view-panel">
+    <div class="todo-header">
+      <h2>ADS</h2>
+      <p class="subtitle">Campanhas de anúncios pagos, separadas por plataforma — os campos abaixo estão prontos pra receber os dados direto de cada API. Nada aqui é lançado manualmente.</p>
+    </div>
+
+    <div class="todo-subnav" id="adsSubnav">
+      <button type="button" class="todo-subnav-btn active" onclick="switchAdsPlatform('meta')"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 8c-1.4 0-2.5 1.8-2.5 4S7.6 16 9 16c1 0 1.8-.9 2.4-2.3.6 1.4 1.4 2.3 2.4 2.3 1.4 0 2.5-1.8 2.5-4S15.2 8 13.8 8c-1 0-1.8.9-2.4 2.3C10.8 8.9 10 8 9 8z"/></svg></span>Meta Ads</button>
+      <button type="button" class="todo-subnav-btn" onclick="switchAdsPlatform('tiktok')"><span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span>TikTok Ads</button>
+    </div>
+
+    <div class="locked-construction ads-waiting-card" id="adsWaitingCard">
+      <div class="locked-construction-icon"><span class="icon-chip icon-chip-lg icon-chip-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span></div>
+      <h3 id="adsWaitingTitle">Aguardando conexão com o Meta Ads</h3>
+      <p id="adsWaitingDesc">Assim que a extensão for conectada (App Review + Verificação de Empresa aprovados), as campanhas ativas e desativadas de vocês vão aparecer automaticamente nas colunas abaixo, com todos os campos prontos pra abrir no pop-up de cada uma — investimento, alcance, cliques, resultados, retorno financeiro, estrutura interna e segmentação.</p>
+      <p class="locked-construction-note">Até lá, as colunas ficam vazias — nenhum dado é digitado manualmente aqui.</p>
+    </div>
+
+    <div class="ads-board">
+      <div class="ads-col">
+        <div class="ads-col-title">Campanhas ativas</div>
+        <div class="ads-col-body" id="adsColAtiva"></div>
+      </div>
+      <div class="ads-col">
+        <div class="ads-col-title">Campanhas desativadas</div>
+        <div class="ads-col-body" id="adsColPausada"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="adsCampaignModalOverlay" class="modal-overlay">
+    <div class="modal-box" style="max-width:760px;">
+      <button type="button" id="adsCampaignModalClose" class="modal-close">✕</button>
+      <div id="adsCampaignModalContent"></div>
     </div>
   </div>
 
@@ -2625,7 +3053,7 @@
   // Guarda 4 blocos (contentData, comissaoEntries, metricsData, roteiroKB) no servidor, além do
   // localStorage local. Local continua funcionando sozinho se a função não existir/estiver offline —
   // isso deixa o site utilizável mesmo publicado só como HTML estático (drag-and-drop), sem quebrar nada.
-  const CLOUD_KEYS = ['contentData', 'comissaoEntries', 'metricsData', 'roteiroKB'];
+  const CLOUD_KEYS = ['contentData', 'comissaoEntries', 'metricsData', 'roteiroKB', 'adsData', 'cerebroHistorico', 'espiaoHistorico', 'engenheiroHistorico', 'trendHunterHistorico', 'pautistaHistorico'];
   const CLOUD_ENDPOINT = '/.netlify/functions/dados';
   let cloudToken = localStorage.getItem('cloudToken') || '';
   let cloudAvailable = null; // null = ainda não sabemos, true/false depois da 1ª tentativa
@@ -2697,8 +3125,20 @@
       if (typeof loadMetricsData === 'function') loadMetricsData();
       if (typeof loadContentData === 'function') { contentData = loadContentData(); }
       if (typeof loadComissaoEntries === 'function') loadComissaoEntries();
+      if (typeof loadAdsData === 'function') { adsData = loadAdsData(); }
+      if (typeof loadCerebroHistorico === 'function') { cerebroHistorico = loadCerebroHistorico(); }
+      if (typeof loadEspiaoHistorico === 'function') { espiaoHistorico = loadEspiaoHistorico(); }
+      if (typeof loadEngenheiroHistorico === 'function') { engenheiroHistorico = loadEngenheiroHistorico(); }
+      if (typeof loadTrendHunterHistorico === 'function') { trendHunterHistorico = loadTrendHunterHistorico(); }
+      if (typeof loadPautistaHistorico === 'function') { pautistaHistorico = loadPautistaHistorico(); }
       if (typeof renderContentBoard === 'function' && document.getElementById('contentColIdeia')) { renderContentBoard(); }
       if (typeof renderCalendar === 'function' && document.getElementById('calendarGrid')) { renderCalendar(); }
+      if (typeof renderAdsBoard === 'function' && document.getElementById('adsColAtiva')) { renderAdsBoard(); }
+      if (typeof renderCerebroHistorico === 'function' && document.getElementById('cerebroHistoricoBox')) { renderCerebroHistorico(); }
+      if (typeof renderEspiaoHistorico === 'function' && document.getElementById('espHistoricoBox')) { renderEspiaoHistorico(); }
+      if (typeof renderEngenheiroHistorico === 'function' && document.getElementById('engHistoricoBox')) { renderEngenheiroHistorico(); }
+      if (typeof renderThHistorico === 'function' && document.getElementById('thHistoricoBox')) { renderThHistorico(); }
+      if (typeof renderPautistaHistorico === 'function' && document.getElementById('ptHistoricoBox')) { renderPautistaHistorico(); }
       if (typeof metricsDashboardsBuilt !== 'undefined' && metricsDashboardsBuilt && typeof initMetricsDashboards === 'function') { metricsDashboardsBuilt = false; initMetricsDashboards(); }
       if (document.getElementById('rtAprendizados') && typeof loadRoteiroKB === 'function') loadRoteiroKB();
       setCloudBadge('synced', 'Sincronizado');
@@ -2738,7 +3178,9 @@
     xCircle: '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
     faceSad: '<circle cx="12" cy="12" r="9"/><path d="M8 15.5c1-1.2 2.4-1.8 4-1.8s3 .6 4 1.8"/><circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none"/>',
     faceOk: '<circle cx="12" cy="12" r="9"/><path d="M8 15h8"/><circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none"/>',
-    faceHappy: '<circle cx="12" cy="12" r="9"/><path d="M8 13.5c1 1.4 2.4 2 4 2s3-.6 4-2"/><circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none"/>'
+    faceHappy: '<circle cx="12" cy="12" r="9"/><path d="M8 13.5c1 1.4 2.4 2 4 2s3-.6 4-2"/><circle cx="9" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1" fill="currentColor" stroke="none"/>',
+    brain: '<path d="M9 4a3 3 0 00-3 3 3 3 0 00-1.5 5.6A3.2 3.2 0 007 18a3 3 0 002.6-1.5M9 4a3 3 0 013 3v9a3 3 0 01-2.4 2.9M9 4v13M15 4a3 3 0 013 3 3 3 0 011.5 5.6A3.2 3.2 0 0117 18a3 3 0 01-2.6-1.5M15 4a3 3 0 00-3 3M15 4v13"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>'
   };
   function iconSvg(name) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (ICON_PATHS[name] || '') + '</svg>';
@@ -2754,22 +3196,28 @@
       ferramentas: document.getElementById('viewFerramentas'),
       financeiro: document.getElementById('viewFinanceiro'),
       metricas: document.getElementById('viewMetricas'),
-      conteudo: document.getElementById('viewConteudo')
+      conteudo: document.getElementById('viewConteudo'),
+      extensoes: document.getElementById('viewExtensoes'),
+      ads: document.getElementById('viewAds')
     };
     const btns = {
       plano: document.getElementById('navPlano'),
       ferramentas: document.getElementById('navFerramentas'),
       financeiro: document.getElementById('navFinanceiro'),
       metricas: document.getElementById('navMetricas'),
-      conteudo: document.getElementById('navConteudo')
+      conteudo: document.getElementById('navConteudo'),
+      extensoes: document.getElementById('navExtensoes'),
+      ads: document.getElementById('navAds')
     };
     Object.keys(panels).forEach(key => {
       panels[key].classList.toggle('active', key === view);
       btns[key].classList.toggle('active', key === view);
     });
-    if (view === 'metricas') initMetricsDashboards();
+    if (view === 'metricas') { initMetricsDashboards(); refreshMetricVideoOptions(); }
     if (view === 'conteudo') initContentTab();
-    if (view === 'ferramentas' || view === 'financeiro' || view === 'metricas' || view === 'conteudo') {
+    if (view === 'extensoes') initExtensionsTab();
+    if (view === 'ads') initAdsTab();
+    if (view === 'ferramentas' || view === 'financeiro' || view === 'metricas' || view === 'conteudo' || view === 'extensoes' || view === 'ads') {
       animateReveal(panels[view]);
     }
   }
@@ -2949,6 +3397,7 @@
       html += '<div class="metric-form-card">';
       html += '<div class="metric-form-grid">';
       html += '<div class="metric-field"><label>Data</label><input type="date" id="mf_' + ch + '_data"></div>';
+      html += '<div class="metric-field"><label>Vídeo relacionado <span class="tool-kb-hint">(opcional)</span></label><select id="mf_' + ch + '_video"><option value="">— nenhum / métrica geral do canal —</option></select></div>';
       cfg.fields.forEach(f => {
         html += '<div class="metric-field"><label>' + f.label + '</label><input type="number" step="0.01" id="mf_' + ch + '_' + f.key + '"></div>';
       });
@@ -2972,6 +3421,23 @@
       renderMetricChart(ch);
     });
     renderMetricCompare();
+    refreshMetricVideoOptions();
+  }
+
+  // Popula o seletor "Vídeo relacionado" de cada canal com os títulos já publicados no
+  // Conteúdo — é assim que uma métrica lançada passa a ficar amarrada a um vídeo específico,
+  // em vez de só um número solto do canal. Roda de novo toda vez que a aba Métricas é aberta,
+  // pra sempre refletir o que já foi publicado até agora.
+  function refreshMetricVideoOptions() {
+    const publicados = contentData.filter(t => t.status === 'publicado' && t.titulo);
+    Object.keys(METRIC_CHANNELS).forEach(ch => {
+      const select = document.getElementById('mf_' + ch + '_video');
+      if (!select) return;
+      const atual = select.value;
+      select.innerHTML = '<option value="">— nenhum / métrica geral do canal —</option>' +
+        publicados.map(t => '<option value="' + escapeHtml(t.titulo) + '">' + escapeHtml(t.titulo) + (t.data ? ' (' + t.data + ')' : '') + '</option>').join('');
+      if (publicados.some(t => t.titulo === atual)) select.value = atual;
+    });
   }
 
   // Gráfico de tendência (SVG nativo, sem lib) — mostra a métrica escolhida ao longo dos registros.
@@ -3053,7 +3519,9 @@
   function addMetricEntry(channel) {
     const cfg = METRIC_CHANNELS[channel];
     const data = document.getElementById('mf_' + channel + '_data').value || '(sem data)';
-    const entry = { id: 'mt_' + Date.now() + '_' + Math.floor(Math.random() * 1000), data: data };
+    const videoSelect = document.getElementById('mf_' + channel + '_video');
+    const videoTitulo = videoSelect ? videoSelect.value : '';
+    const entry = { id: 'mt_' + Date.now() + '_' + Math.floor(Math.random() * 1000), data: data, videoTitulo: videoTitulo };
     cfg.fields.forEach(f => {
       const input = document.getElementById('mf_' + channel + '_' + f.key);
       entry[f.key] = input.value === '' ? null : parseFloat(input.value);
@@ -3064,6 +3532,7 @@
     renderMetricHistory(channel);
     renderMetricChart(channel);
     renderMetricCompare();
+    if (videoSelect) videoSelect.value = '';
   }
 
   function removeMetricEntry(channel, id) {
@@ -3083,11 +3552,11 @@
       wrap.innerHTML = '<div class="cs-empty">Nenhum registro ainda.</div>';
       return;
     }
-    let html = '<table class="metric-history-table"><thead><tr><th>Data</th>';
+    let html = '<table class="metric-history-table"><thead><tr><th>Data</th><th>Vídeo</th>';
     cfg.fields.forEach(f => { html += '<th>' + f.label + '</th>'; });
     html += '<th></th></tr></thead><tbody>';
     entries.slice().reverse().forEach(e => {
-      html += '<tr><td>' + escapeHtml(e.data) + '</td>';
+      html += '<tr><td>' + escapeHtml(e.data) + '</td><td>' + (e.videoTitulo ? escapeHtml(e.videoTitulo) : '—') + '</td>';
       cfg.fields.forEach(f => {
         html += '<td>' + (e[f.key] === null || e[f.key] === undefined ? '—' : e[f.key]) + '</td>';
       });
@@ -3142,6 +3611,237 @@
     renderContentBoard();
     renderCalendar();
   }
+
+  // ---------- Extensões: ferramentas externas que dá pra ligar na central ----------
+  // Ícones abaixo são representações no estilo/cor de cada produto — não os arquivos de
+  // logo oficiais (marca registrada de cada empresa). Nenhuma delas está conectada de
+  // verdade ainda: cada uma exige credenciais próprias criadas na plataforma correspondente.
+  const CENTRAL_EXTENSIONS = [
+    {
+      id: 'calendar', nome: 'Google Agenda', bg: '#e8f0fe',
+      svg: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2" fill="#fff" stroke="#4285F4" stroke-width="1.6"/><path d="M3 9h18" stroke="#4285F4" stroke-width="1.6"/><path d="M7 2v4M17 2v4" stroke="#4285F4" stroke-width="1.6" stroke-linecap="round"/><rect x="13" y="12" width="5" height="5" rx="1" fill="#EA4335"/></svg>',
+      desc: 'Marcar e ler datas de gravação direto do Conteúdo, sem abrir a agenda separada.',
+      nota: 'Pra conectar: criar um projeto no Google Cloud Console, ativar a Calendar API, gerar credenciais OAuth e autorizar o acesso à conta Google de vocês (login "Entrar com o Google" dentro do site).'
+    },
+    {
+      id: 'sheets', nome: 'Google Sheets', bg: '#e6f4ea',
+      svg: '<svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" fill="#0F9D58"/><rect x="7" y="7" width="10" height="10" rx="1" fill="#fff"/><path d="M12 7v10M7 12h10" stroke="#0F9D58" stroke-width="1.2"/></svg>',
+      desc: 'Usar uma planilha do Google como extensão ou espelho dos dados da central.',
+      nota: 'Pra conectar: ativar a Sheets API no Google Cloud, gerar credenciais OAuth e escolher qual planilha fica ligada aos dados de qual ferramenta.'
+    },
+    {
+      id: 'drive', nome: 'Google Drive', bg: '#fff8e1',
+      svg: '<svg viewBox="0 0 24 24"><path d="M8.5 3h7l6.5 11-3.5 6h-13l-3.5-6z" fill="#fff"/><path d="M8.5 3h7l4.2 7.2H4.3z" fill="#2684FC"/><path d="M4.3 10.2L1.5 15l3.5 6 3.7-6.4z" fill="#FBBC04"/><path d="M9 20.6h9l3.5-6H12.7z" fill="#34A853"/></svg>',
+      desc: 'Guardar e organizar vídeos, imagens de referência e roteiros exportados numa pasta do Drive.',
+      nota: 'Pra conectar: ativar a Drive API, gerar credenciais OAuth e escolher a pasta que a central vai poder ler/escrever.'
+    },
+    {
+      id: 'docs', nome: 'Google Docs', bg: '#e8f0fe',
+      svg: '<svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" fill="#4285F4"/><path d="M13 2l6 6h-6z" fill="#a4c2f4"/><path d="M8 12h8M8 15h8M8 18h5" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>',
+      desc: 'Gerar automaticamente um documento do Google já formatado com o roteiro pronto.',
+      nota: 'Pra conectar: ativar a Docs API junto com a Drive API (Docs precisa das duas), gerar credenciais OAuth.'
+    },
+    {
+      id: 'gmail', nome: 'Gmail', bg: '#fce8e6',
+      svg: '<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" fill="#fff" stroke="#EA4335" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="#EA4335" stroke-width="1.6" fill="none"/></svg>',
+      desc: 'Mandar um e-mail automático (tipo um resumo semanal) direto da central.',
+      nota: 'Pra conectar: ativar a Gmail API, gerar credenciais OAuth. Limite gratuito: cerca de 500 envios/dia numa conta Gmail pessoal — bem acima do que vocês precisariam.'
+    },
+    {
+      id: 'youtube', nome: 'YouTube Data API', bg: '#fce8e6',
+      svg: '<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><path d="M10 9l6 3-6 3z" fill="#fff"/></svg>',
+      desc: 'Puxar estatísticas do canal do YouTube de vocês direto pro dashboard de Métricas.',
+      nota: 'Pra conectar: ativar a YouTube Data API v3, gerar credenciais OAuth. Cota gratuita diária é baixa pra buscas, mas de sobra só pra ler os números do próprio canal.'
+    },
+    {
+      id: 'analytics', nome: 'Google Analytics', bg: '#fef7e0',
+      svg: '<svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="9" rx="1" fill="#F9AB00"/><rect x="10" y="7" width="4" height="14" rx="1" fill="#E37400"/><rect x="16" y="3" width="4" height="18" rx="1" fill="#F9AB00"/></svg>',
+      desc: 'Puxar dados de visitantes se vocês tiverem um site/loja própria (fora Shopee/Amazon).',
+      nota: 'Pra conectar: ativar a Analytics Data API (GA4), gerar credenciais OAuth e vincular à propriedade do Analytics de vocês. Só faz sentido se existir um site próprio medido pelo GA4.'
+    },
+    {
+      id: 'tasks', nome: 'Google Tasks', bg: '#e8f0fe',
+      svg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="#4285F4"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      desc: 'Sincronizar a lista de tarefas com o Google Tasks, se alguém já usa isso no celular.',
+      nota: 'Pra conectar: ativar a Tasks API, gerar credenciais OAuth.'
+    },
+    {
+      id: 'meet', nome: 'Google Meet', bg: '#e6f4ea',
+      svg: '<svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2" fill="#00897B"/><path d="M16 10l5-3v10l-5-3z" fill="#00897B"/><path d="M6 9h6M6 12h6M6 15h4" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></svg>',
+      desc: 'Criar links de reunião automaticamente (ex: alinhamento semanal) direto da central.',
+      nota: 'Pra conectar: usar a Calendar API pra criar eventos com link do Meet junto (o Meet não tem uma API própria separada — os links nascem através de eventos da Agenda).'
+    },
+    {
+      id: 'metaads', nome: 'Meta Ads', bg: '#e7f0ff',
+      svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0866FF"/><path d="M8 8c-1.6 0-2.8 2-2.8 4.4S6.4 17 8 17c1.1 0 2-1 2.7-2.6.7 1.6 1.6 2.6 2.7 2.6 1.6 0 2.8-2.2 2.8-4.6S15 8 13.4 8c-1.1 0-2 1-2.7 2.6C10 9 9.1 8 8 8z" fill="#fff"/></svg>',
+      desc: 'Ver as campanhas do Gerenciador de Anúncios da Meta direto na aba ADS — investimento, alcance, cliques, resultados e retorno, tudo puxado automaticamente.',
+      nota: 'Pra conectar: criar um app no Meta for Developers, pedir a permissão ads_read (ou ads_management), passar pela Revisão de App da Meta (vídeo explicando o uso + política de privacidade) e pela Verificação de Empresa (envio de documentos do CNPJ). É gratuito, mas o processo de aprovação é mais demorado que o do Google — pode levar de dias a semanas.'
+    },
+    {
+      id: 'tiktokads', nome: 'TikTok Ads', bg: '#eaf0f2',
+      svg: '<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#000"/><path d="M14.5 6v7.2a2.3 2.3 0 11-2.3-2.3" stroke="#25F4EE" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M14.9 6.3c.3 1.4 1.3 2.4 2.7 2.7" stroke="#FE2C55" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>',
+      desc: 'Ver as campanhas do TikTok Ads Manager direto na aba ADS, no mesmo formato do Meta — investimento, alcance, cliques, resultados e retorno.',
+      nota: 'Pra conectar: registrar um app no TikTok for Business, pedir acesso à Marketing API, passar pela auditoria de produção (política de privacidade + vídeo demonstrando o fluxo de login/autorização) — costuma levar de 1 a 2 semanas. É gratuita, sem cobrança por chamada. Precisa de uma conta ativa no TikTok Ads Manager pra ter o que puxar.'
+    }
+  ];
+
+  function initExtensionsTab() {
+    const grid = document.getElementById('extensionsGrid');
+    if (grid.children.length > 0) return;
+    grid.innerHTML = CENTRAL_EXTENSIONS.map(ext =>
+      '<div class="extension-card">' +
+        '<div class="extension-card-top">' +
+          '<div class="extension-icon" style="background:' + ext.bg + '">' + ext.svg + '</div>' +
+          '<div><div class="extension-card-title">' + ext.nome + '</div><span class="extension-status">Não conectado</span></div>' +
+        '</div>' +
+        '<div class="extension-card-desc">' + ext.desc + '</div>' +
+        '<div class="extension-card-note" id="extNote_' + ext.id + '">' + ext.nota + '</div>' +
+        '<div class="extension-card-actions">' +
+          '<button type="button" onclick="toggleExtensionNote(\'' + ext.id + '\')" id="extToggleBtn_' + ext.id + '">Como funciona</button>' +
+          '<button type="button" class="primary" onclick="pedirConexaoExtensao(\'' + ext.nome + '\')">Priorizar essa</button>' +
+        '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function toggleExtensionNote(id) {
+    const note = document.getElementById('extNote_' + id);
+    const btn = document.getElementById('extToggleBtn_' + id);
+    const open = note.classList.toggle('open');
+    btn.textContent = open ? 'Esconder' : 'Como funciona';
+  }
+
+  function pedirConexaoExtensao(nome) {
+    alert('Anotado! Fala pra mim, na conversa, que você quer priorizar "' + nome + '" — a gente monta a conexão de verdade dela, passo a passo, com as credenciais criadas na plataforma correspondente.');
+  }
+
+  // ---------- ADS: campanhas do Meta Ads — lançadas manualmente até a extensão da Meta ser conectada ----------
+  // Os mesmos campos aqui são exatamente os que a Insights API do Meta devolve — quando a conexão
+  // de verdade existir, essa mesma tela passa a ser preenchida sozinha em vez de manual.
+  function loadAdsData() {
+    try {
+      const raw = localStorage.getItem('adsData');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [];
+  }
+  function saveAdsData() {
+    try { localStorage.setItem('adsData', JSON.stringify(adsData)); } catch (e) {}
+    cloudSet('adsData', adsData);
+  }
+  var adsData = loadAdsData();
+  var adsIdCounter = 1;
+  function nextAdId() { adsIdCounter += 1; return 'ad_' + Date.now() + '_' + adsIdCounter; }
+
+  // Duas plataformas de anúncio pago, cada uma com exatamente os mesmos campos (o que a Insights
+  // API de cada uma devolve é equivalente: investimento, alcance, cliques, resultados, retorno).
+  const ADS_PLATFORMS = {
+    meta: { label: 'Meta Ads', desc: 'Assim que a extensão da Meta for conectada (App Review + Verificação de Empresa aprovados), as campanhas ativas e desativadas de vocês vão aparecer automaticamente nas colunas abaixo, com todos os campos prontos pra abrir no pop-up de cada uma — investimento, alcance, cliques, resultados, retorno financeiro, estrutura interna e segmentação.' },
+    tiktok: { label: 'TikTok Ads', desc: 'Assim que a extensão do TikTok Ads for conectada (auditoria de app aprovada no TikTok for Business), as campanhas ativas e desativadas de vocês vão aparecer automaticamente nas colunas abaixo, com os mesmos campos do Meta — investimento, alcance, cliques, resultados, retorno financeiro, estrutura interna e segmentação.' }
+  };
+  var adsSelectedPlatform = 'meta';
+
+  var adsTabInited = false;
+  function initAdsTab() {
+    adsTabInited = true;
+    renderAdsBoard();
+  }
+
+  function switchAdsPlatform(platform) {
+    adsSelectedPlatform = platform;
+    document.querySelectorAll('#adsSubnav .todo-subnav-btn').forEach((btn, idx) => {
+      btn.classList.toggle('active', Object.keys(ADS_PLATFORMS)[idx] === platform);
+    });
+    document.getElementById('adsWaitingTitle').textContent = 'Aguardando conexão com o ' + ADS_PLATFORMS[platform].label;
+    document.getElementById('adsWaitingDesc').textContent = ADS_PLATFORMS[platform].desc;
+    renderAdsBoard();
+    animateReveal(document.getElementById('viewAds'));
+  }
+
+  // Sem formulário manual de propósito: essas campanhas só existem quando vierem da API de cada
+  // plataforma. adsData fica pronto pra receber esses objetos automaticamente quando a extensão
+  // for conectada (mesma forma dos campos que já desenhamos juntos), cada entrada marcada com
+  // a plataforma de origem ('meta' ou 'tiktok').
+
+  function fmtMoney(v) { return v === null || v === undefined || isNaN(v) ? '—' : 'R$ ' + v.toFixed(2).replace('.', ','); }
+  function fmtNum(v) { return v === null || v === undefined || isNaN(v) ? '—' : v; }
+  function fmtPct(v) { return v === null || v === undefined || isNaN(v) ? '—' : v + '%'; }
+  function fmtTxt(v) { return v ? escapeHtml(v) : '—'; }
+
+  function renderAdsBoard() {
+    const doPlataforma = adsData.filter(c => (c.plataforma || 'meta') === adsSelectedPlatform);
+    const ativas = doPlataforma.filter(c => c.status === 'ativa');
+    const pausadas = doPlataforma.filter(c => c.status === 'pausada');
+    const cardHtml = c => '<button type="button" class="ads-campaign-card" onclick="openAdCampaign(\'' + c.id + '\')">' +
+      '<div class="ads-campaign-card-title">' + escapeHtml(c.nome) + '</div>' +
+      '<div class="ads-campaign-card-meta">' + (c.objetivo ? escapeHtml(c.objetivo) + ' · ' : '') + 'gasto no período: ' + fmtMoney(c.gastoPeriodo) + '</div>' +
+      '</button>';
+    const emptyMsg = 'Aguardando dados da API do ' + ADS_PLATFORMS[adsSelectedPlatform].label;
+    document.getElementById('adsColAtiva').innerHTML = ativas.length
+      ? ativas.map(cardHtml).join('')
+      : '<div class="ads-col-empty">' + emptyMsg + '</div>';
+    document.getElementById('adsColPausada').innerHTML = pausadas.length
+      ? pausadas.map(cardHtml).join('')
+      : '<div class="ads-col-empty">' + emptyMsg + '</div>';
+  }
+
+  function openAdCampaign(id) {
+    const c = adsData.find(x => x.id === id);
+    if (!c) return;
+    const content = document.getElementById('adsCampaignModalContent');
+    content.innerHTML =
+      '<h3>' + escapeHtml(c.nome) + '</h3>' +
+      '<p class="modal-sub">' + ADS_PLATFORMS[c.plataforma || 'meta'].label + ' · ' + (c.status === 'ativa' ? 'Ativa' : 'Desativada / Pausada') + (c.objetivo ? ' · ' + escapeHtml(c.objetivo) : '') +
+        (c.dataInicio ? ' · início ' + c.dataInicio : '') + (c.dataFim ? ' · fim ' + c.dataFim : '') + '</p>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Investimento</div>' +
+      '<div class="tool-result-row"><span>Orçamento</span><span>' + fmtMoney(c.orcamento) + '</span></div>' +
+      '<div class="tool-result-row"><span>Gasto no período</span><span>' + fmtMoney(c.gastoPeriodo) + '</span></div>' +
+      '<div class="tool-result-row"><span>Gasto total</span><span>' + fmtMoney(c.gastoTotal) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Alcance e exposição</div>' +
+      '<div class="tool-result-row"><span>Impressões</span><span>' + fmtNum(c.impressoes) + '</span></div>' +
+      '<div class="tool-result-row"><span>Alcance</span><span>' + fmtNum(c.alcance) + '</span></div>' +
+      '<div class="tool-result-row"><span>Frequência</span><span>' + fmtNum(c.frequencia) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Cliques</div>' +
+      '<div class="tool-result-row"><span>Cliques totais</span><span>' + fmtNum(c.cliques) + '</span></div>' +
+      '<div class="tool-result-row"><span>Cliques no link</span><span>' + fmtNum(c.cliquesLink) + '</span></div>' +
+      '<div class="tool-result-row"><span>CTR</span><span>' + fmtPct(c.ctr) + '</span></div>' +
+      '<div class="tool-result-row"><span>CPC</span><span>' + fmtMoney(c.cpc) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Custo por exposição</div>' +
+      '<div class="tool-result-row"><span>CPM</span><span>' + fmtMoney(c.cpm) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Resultados / conversões</div>' +
+      '<div class="tool-result-row"><span>Resultados</span><span>' + fmtNum(c.resultados) + '</span></div>' +
+      '<div class="tool-result-row"><span>Custo por resultado</span><span>' + fmtMoney(c.custoResultado) + '</span></div>' +
+      '<div class="tool-result-row"><span>Taxa de conversão</span><span>' + fmtPct(c.taxaConversao) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Retorno financeiro</div>' +
+      '<div class="tool-result-row"><span>Valor gerado em vendas</span><span>' + fmtMoney(c.valorVendas) + '</span></div>' +
+      '<div class="tool-result-row"><span>ROAS</span><span>' + fmtNum(c.roas) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Estrutura interna</div>' +
+      '<div class="tool-result-row"><span>Qtd. de conjuntos</span><span>' + fmtNum(c.qtdConjuntos) + '</span></div>' +
+      '<div class="tool-result-row"><span>Qtd. de anúncios</span><span>' + fmtNum(c.qtdAnuncios) + '</span></div>' +
+      '<div class="tool-result-row"><span>Melhor anúncio</span><span>' + fmtTxt(c.melhorAnuncio) + '</span></div></div>' +
+
+      '<div class="ads-modal-group"><div class="ads-modal-group-title">Segmentação usada</div>' +
+      '<div class="tool-result-row"><span>Idade</span><span>' + fmtTxt(c.segIdade) + '</span></div>' +
+      '<div class="tool-result-row"><span>Gênero</span><span>' + fmtTxt(c.segGenero) + '</span></div>' +
+      '<div class="tool-result-row"><span>Posicionamento</span><span>' + fmtTxt(c.segPosicionamento) + '</span></div>' +
+      '<div class="tool-result-row"><span>Plataforma</span><span>' + fmtTxt(c.segPlataforma) + '</span></div></div>';
+    document.getElementById('adsCampaignModalOverlay').classList.add('open');
+    animateReveal(content);
+  }
+
+  document.getElementById('adsCampaignModalClose').onclick = () => {
+    document.getElementById('adsCampaignModalOverlay').classList.remove('open');
+  };
+  document.getElementById('adsCampaignModalOverlay').onclick = (e) => {
+    if (e.target.id === 'adsCampaignModalOverlay') e.currentTarget.classList.remove('open');
+  };
 
   function addContentItem() {
     const titulo = document.getElementById('ctTitulo').value.trim();
@@ -3278,10 +3978,15 @@
   function openTool(key) {
     document.getElementById('toolCardsGrid').style.display = 'none';
     document.getElementById('tool' + capitalize(key)).classList.add('active');
+    if (key === 'cerebro') initCerebroTool();
     if (key === 'roteiro') initRoteiroTool();
     if (key === 'viabilidade') initViabilidadeTool();
     if (key === 'comissao') initComissaoTool();
     if (key === 'checklist') initChecklistTool();
+    if (key === 'espiao') initEspiaoTool();
+    if (key === 'engenheiro') initEngenheiroTool();
+    if (key === 'trendhunter') initTrendHunterTool();
+    if (key === 'pautista') initPautistaTool();
   }
   function closeTool(key) {
     document.getElementById('tool' + capitalize(key)).classList.remove('active');
@@ -3312,6 +4017,82 @@
       loadRoteiroKB();
       roteiroToolInited = true;
     }
+    montarAprendizadosAutomaticos();
+  }
+
+  // Cruza Conteúdo (itens publicados) com Métricas (registros marcados com "Vídeo relacionado")
+  // pelo título — é assim que a central aprende sozinha com o que já foi ao ar, sem precisar
+  // que ninguém digite "esse vídeo performou bem" manualmente. Função pura (sem tocar no DOM),
+  // usada tanto pelo Assistente de Roteiro quanto pelo Cérebro Central. Cada achado carrega
+  // também a marcação manual (bom/ruim) se você já classificou aquele vídeo+canal.
+  function getKbMarcados() {
+    try {
+      const kb = JSON.parse(localStorage.getItem('roteiroKB') || '{}');
+      return kb.marcados || {};
+    } catch (e) { return {}; }
+  }
+  function getAprendizadosAutomaticosLinhas() {
+    const publicados = contentData.filter(t => t.status === 'publicado' && t.titulo);
+    const marcados = getKbMarcados();
+    const linhas = [];
+    const itens = [];
+    publicados.forEach(t => {
+      const achados = [];
+      Object.keys(METRIC_CHANNELS).forEach(ch => {
+        const cfg = METRIC_CHANNELS[ch];
+        (metricsData[ch] || []).forEach(entry => {
+          if (entry.videoTitulo === t.titulo) {
+            const valorPrimario = entry[cfg.primary];
+            const chave = t.titulo + '||' + cfg.label;
+            const marca = marcados[chave];
+            const textoValor = cfg.label + (valorPrimario !== null && valorPrimario !== undefined ? ': ' + valorPrimario + ' (' + (cfg.fields.find(f => f.key === cfg.primary) || {}).label + ')' : ' (registro sem a métrica principal preenchida)') + (entry.data ? ' — ' + entry.data : '') + (marca ? ' [marcado como ' + (marca === 'bom' ? 'BOM' : 'RUIM') + ']' : '');
+            achados.push(textoValor);
+            itens.push({ videoTitulo: t.titulo, quadro: t.quadro, canalLabel: cfg.label, chave: chave, marca: marca || null });
+          }
+        });
+      });
+      if (achados.length) {
+        linhas.push('"' + t.titulo + '"' + (t.quadro ? ' (' + t.quadro + ')' : '') + ': ' + achados.join(' · '));
+      }
+    });
+    return { publicadosCount: publicados.length, linhas: linhas, itens: itens };
+  }
+
+  var rtAprendizadosAutoTexto = '';
+  function montarAprendizadosAutomaticos() {
+    const el = document.getElementById('rtAprendizadosAuto');
+    if (!el) return;
+    const r = getAprendizadosAutomaticosLinhas();
+    rtAprendizadosAutoTexto = r.linhas.join('\n');
+    if (!r.publicadosCount) {
+      el.innerHTML = 'Ainda não tem nenhum item marcado como "Publicado" na aba Conteúdo — assim que tiver, e alguma métrica for lançada com o vídeo marcado, isso aparece aqui sozinho.';
+    } else if (!r.linhas.length) {
+      el.innerHTML = r.publicadosCount + ' vídeo(s) publicado(s), mas nenhum ainda tem métrica lançada com o campo "Vídeo relacionado" preenchido — vá em Métricas e, ao lançar um registro, selecione o vídeo correspondente.';
+    } else {
+      el.innerHTML = r.itens.map(it => {
+        const chaveAttr = it.chave.replace(/'/g, "\\'");
+        return '<div style="margin-bottom:8px;">' +
+          '<strong>"' + escapeHtml(it.videoTitulo) + '"</strong> · ' + escapeHtml(it.canalLabel) +
+          '<span class="roteiro-mark-btns">' +
+          '<button type="button" class="' + (it.marca === 'bom' ? 'marked' : '') + '" onclick="marcarDesempenhoRoteiro(\'' + chaveAttr + '\',\'bom\')">Performou bem</button>' +
+          '<button type="button" class="' + (it.marca === 'ruim' ? 'marked' : '') + '" onclick="marcarDesempenhoRoteiro(\'' + chaveAttr + '\',\'ruim\')">Não performou</button>' +
+          '</span></div>';
+      }).join('');
+    }
+  }
+
+  // Marca um vídeo+canal como "performou bem" ou "não performou" — isso alimenta sozinho a
+  // base de conhecimento (roteiroKB.marcados), sem precisar digitar nada em texto livre. Clicar
+  // de novo no mesmo botão desmarca (volta a neutro).
+  function marcarDesempenhoRoteiro(chave, tipo) {
+    let kb = {};
+    try { kb = JSON.parse(localStorage.getItem('roteiroKB') || '{}'); } catch (e) {}
+    kb.marcados = kb.marcados || {};
+    kb.marcados[chave] = (kb.marcados[chave] === tipo) ? undefined : tipo;
+    if (kb.marcados[chave] === undefined) delete kb.marcados[chave];
+    try { localStorage.setItem('roteiroKB', JSON.stringify(kb)); } catch (e) {}
+    cloudSet('roteiroKB', kb);
+    montarAprendizadosAutomaticos();
   }
 
   function loadRoteiroKB() {
@@ -3360,6 +4141,7 @@
     const persona = document.getElementById('rtPersona').value.trim() || '(usar a persona já validada no tópico 2 do plano de negócio)';
     const comentarios = document.getElementById('rtComentarios').value.trim() || '(nenhum comentário colado nesta rodada)';
     const aprendizados = document.getElementById('rtAprendizados').value.trim() || '(nenhum aprendizado registrado ainda)';
+    const aprendizadosAuto = rtAprendizadosAutoTexto.trim() || '(nenhum vídeo publicado com métrica vinculada ainda)';
     const referencias = document.getElementById('rtReferencias').value.trim() || '(nenhuma referência registrada ainda)';
     const glossario = document.getElementById('rtGlossario').value.trim() || '(nenhum termo técnico registrado ainda)';
 
@@ -3370,7 +4152,8 @@
 'CONTEXTO DE ENGAJAMENTO ATUAL:\n' + metricas + '\n\n' +
 'SINAIS EXTRAÍDOS DOS COMENTÁRIOS (seus e de concorrentes):\n' + comentarios + '\n\n' +
 'BASE DE CONHECIMENTO DA MARCA:\n' +
-'- Aprendizados anteriores: ' + aprendizados + '\n' +
+'- Aprendizados automáticos (dados reais, cruzando vídeos publicados com métricas registradas):\n' + aprendizadosAuto + '\n' +
+'- Aprendizados anteriores (escritos manualmente): ' + aprendizados + '\n' +
 '- Referências de concorrentes/estilo: ' + referencias + '\n' +
 '- Glossário técnico do nicho: ' + glossario + '\n\n' +
 'QUADRO DE CONTEÚDO: ' + quadro + '\n\n' +
@@ -3398,6 +4181,633 @@
     const original = btn.textContent;
     btn.textContent = copied ? 'Copiado ✓' : 'Selecione e copie (Ctrl+C)';
     setTimeout(() => { btn.textContent = original; }, 1800);
+  }
+
+  // ---------- Assistente de Roteiro: geração automática via IA (função Netlify + Gemini) ----------
+  // Pega o prompt já montado (gerarPromptRoteiro) e manda pra função /gerar-roteiro, que chama
+  // o Google Gemini (gratuito) escondendo a chave da API no servidor. Se a função não existir
+  // (ex: site publicado sem o back-end, só o HTML estático), avisa e não trava o resto do app.
+  async function gerarRoteiroComIA() {
+    const prompt = document.getElementById('rtOutput').value;
+    if (!prompt) { alert('Gere o prompt primeiro, antes de pedir pra IA escrever o roteiro.'); return; }
+    const btn = document.getElementById('rtIaBtn');
+    const box = document.getElementById('rtIaOutputBox');
+    const out = document.getElementById('rtIaOutput');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Gerando roteiro…';
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: prompt })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        out.value = 'Não consegui gerar agora: ' + (data.error || res.status) + (data.detail ? ('\n\nDetalhe: ' + data.detail) : '');
+      } else {
+        out.value = data.text || '(a IA respondeu vazio — tenta de novo)';
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      out.value = 'Não consegui conectar com a função de IA. Se você publicou o site direto pelo Netlify Drop (arrastar o HTML), essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  function copiarRoteiroIA() {
+    const output = document.getElementById('rtIaOutput');
+    output.select();
+    output.setSelectionRange(0, 999999);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(output.value);
+      else document.execCommand('copy');
+    } catch (e) {}
+  }
+
+  // ---------- Cérebro Central: pergunta livre que enxerga tudo que está guardado hoje ----------
+  // Antes de perguntar pra IA, junta um retrato de Conteúdo + Métricas + Comissões + base de
+  // conhecimento do Roteiro num só texto. É só o que está salvo no momento da pergunta —
+  // não é um agente que fica rodando sozinho, só um contexto amplo montado na hora.
+  function montarContextoCentral() {
+    const partes = [];
+
+    // Conteúdo
+    const porStatus = { ideia: 0, gravado: 0, editado: 0, publicado: 0 };
+    contentData.forEach(t => { if (porStatus[t.status] !== undefined) porStatus[t.status]++; });
+    let txtConteudo = 'CONTEÚDO (pipeline de ideias) — ' + contentData.length + ' itens no total ' +
+      '(' + porStatus.ideia + ' em ideia, ' + porStatus.gravado + ' gravado, ' + porStatus.editado + ' editado, ' + porStatus.publicado + ' publicado):\n';
+    if (contentData.length) {
+      txtConteudo += contentData.slice(-25).map(t =>
+        '- [' + CONTENT_STATUS_LABEL[t.status] + '] ' + t.titulo + (t.quadro ? ' (' + t.quadro + ')' : '') + (t.data ? ' — ' + t.data : '') +
+        (t.descricao ? ': ' + t.descricao : '')
+      ).join('\n');
+    } else {
+      txtConteudo += '(nenhuma ideia cadastrada ainda)';
+    }
+    partes.push(txtConteudo);
+
+    // Performance por vídeo publicado (cruzamento automático Conteúdo x Métricas)
+    const auto = getAprendizadosAutomaticosLinhas();
+    partes.push('PERFORMANCE POR VÍDEO PUBLICADO (cruzado automaticamente pelo título do vídeo):\n' +
+      (auto.linhas.length ? auto.linhas.join('\n') : '(nenhum vídeo publicado ainda tem métrica vinculada a ele — os registros em Métricas precisam ter o campo "Vídeo relacionado" preenchido)'));
+
+    // Métricas
+    let txtMetricas = 'MÉTRICAS DOS CANAIS (registro mais recente de cada um):\n';
+    Object.keys(METRIC_CHANNELS).forEach(ch => {
+      const cfg = METRIC_CHANNELS[ch];
+      const entries = metricsData[ch] || [];
+      if (!entries.length) {
+        txtMetricas += '- ' + cfg.label + ': nenhum dado lançado ainda\n';
+        return;
+      }
+      const latest = entries[entries.length - 1];
+      const prev = entries.length > 1 ? entries[entries.length - 2] : null;
+      let variacao = '';
+      if (prev && prev[cfg.primary] !== undefined && parseFloat(prev[cfg.primary]) > 0) {
+        const pct = ((parseFloat(latest[cfg.primary]) - parseFloat(prev[cfg.primary])) / parseFloat(prev[cfg.primary])) * 100;
+        variacao = ' (' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '% vs. registro anterior)';
+      }
+      const camposTxt = cfg.fields.map(f => f.label + ': ' + (latest[f.key] !== undefined && latest[f.key] !== '' ? latest[f.key] : '—')).join(', ');
+      txtMetricas += '- ' + cfg.label + ' em ' + (latest.data || '(sem data)') + variacao + ' — ' + camposTxt + '\n';
+    });
+    partes.push(txtMetricas);
+
+    // Comissões
+    let txtComissao = 'COMISSÕES — ' + comissaoEntries.length + ' vendas registradas:\n';
+    if (comissaoEntries.length) {
+      const total = comissaoEntries.reduce((s, e) => s + (e.comissaoLiquida || 0), 0);
+      txtComissao += 'Total líquido acumulado: R$ ' + total.toFixed(2).replace('.', ',') + '\n';
+      txtComissao += comissaoEntries.slice(-15).map(e =>
+        '- ' + (e.data || '(sem data)') + ' · ' + (e.frente || '') + ' · ' + (e.plataforma || '') +
+        ' · venda R$ ' + (e.valorVenda || 0).toFixed(2).replace('.', ',') +
+        ' · líquido R$ ' + (e.comissaoLiquida || 0).toFixed(2).replace('.', ',')
+      ).join('\n');
+    } else {
+      txtComissao += '(nenhuma venda registrada ainda)';
+    }
+    partes.push(txtComissao);
+
+    // ADS (Meta Ads / TikTok Ads) — hoje só existe estrutura, dados reais chegam quando a API for conectada
+    const adsAtivas = adsData.filter(c => c.status === 'ativa');
+    const adsPausadas = adsData.filter(c => c.status === 'pausada');
+    let txtAds = 'ADS (Meta Ads / TikTok Ads) — ' + adsData.length + ' campanha(s) registrada(s) (' + adsAtivas.length + ' ativas, ' + adsPausadas.length + ' desativadas):\n';
+    if (adsData.length) {
+      txtAds += adsData.slice(-15).map(c =>
+        '- [' + (c.plataforma === 'tiktok' ? 'TikTok Ads' : 'Meta Ads') + '] ' + c.nome + ' (' + (c.status === 'ativa' ? 'ativa' : 'desativada') + ')' +
+        (c.gastoPeriodo !== null && c.gastoPeriodo !== undefined ? ' · gasto no período: R$ ' + c.gastoPeriodo : '') +
+        (c.roas !== null && c.roas !== undefined ? ' · ROAS: ' + c.roas : '')
+      ).join('\n');
+    } else {
+      txtAds += '(nenhuma campanha ainda — a extensão de anúncios ainda não foi conectada via API, então essa seção fica vazia por enquanto)';
+    }
+    partes.push(txtAds);
+
+    // Financeiro — ainda não tem dados reais (aba em construção, aguardando API do ClickUp)
+    partes.push('FINANCEIRO: a aba Financeiro ainda está em construção, aguardando a conexão com a API do ClickUp — não existem dados financeiros reais pra usar aqui ainda. Não invente números de custo, lucro ou fluxo de caixa; se a pergunta depender disso, diga que esse dado ainda não está disponível na central.');
+
+    // Base de conhecimento da marca
+    let kb = {};
+    try { kb = JSON.parse(localStorage.getItem('roteiroKB') || '{}'); } catch (e) {}
+    partes.push(
+      'BASE DE CONHECIMENTO DA MARCA:\n' +
+      'Aprendizados anteriores: ' + (kb.aprendizados || '(nada registrado ainda)') + '\n' +
+      'Referências de concorrentes/estilo: ' + (kb.referencias || '(nada registrado ainda)') + '\n' +
+      'Glossário técnico: ' + (kb.glossario || '(nada registrado ainda)')
+    );
+
+    return partes.join('\n\n');
+  }
+
+  // ---------- Histórico do Cérebro Central ----------
+  // Guarda pergunta+resposta+data pra você conseguir voltar e comparar o que ele disse antes
+  // com o que diria hoje, já que cada pergunta é respondida com o retrato mais atual dos dados.
+  function loadCerebroHistorico() {
+    try {
+      const raw = localStorage.getItem('cerebroHistorico');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [];
+  }
+  function saveCerebroHistorico() {
+    try { localStorage.setItem('cerebroHistorico', JSON.stringify(cerebroHistorico)); } catch (e) {}
+    cloudSet('cerebroHistorico', cerebroHistorico);
+  }
+  var cerebroHistorico = loadCerebroHistorico();
+
+  function renderCerebroHistorico() {
+    const box = document.getElementById('cerebroHistoricoBox');
+    if (!box) return;
+    if (!cerebroHistorico.length) {
+      box.innerHTML = '<div class="cs-empty">Nenhuma pergunta feita ainda.</div>';
+      return;
+    }
+    box.innerHTML = cerebroHistorico.slice().reverse().map(h =>
+      '<div class="cerebro-history-item">' +
+        '<div class="cerebro-history-q"><strong>' + escapeHtml(h.dataLabel) + '</strong> — ' + escapeHtml(h.pergunta) + '</div>' +
+        '<div class="cerebro-history-a">' + escapeHtml(h.resposta) + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function initCerebroTool() {
+    const porStatus = { ideia: 0, gravado: 0, editado: 0, publicado: 0 };
+    contentData.forEach(t => { if (porStatus[t.status] !== undefined) porStatus[t.status]++; });
+    const canaisComDado = Object.keys(METRIC_CHANNELS).filter(ch => (metricsData[ch] || []).length > 0).length;
+    document.getElementById('cerebroContextoResumo').innerHTML =
+      iconChip('barChart', 'icon-chip-sm') + 'O que vai junto nessa pergunta agora: ' + contentData.length + ' itens em Conteúdo, ' +
+      canaisComDado + ' de ' + Object.keys(METRIC_CHANNELS).length + ' canais com métricas lançadas, ' +
+      comissaoEntries.length + ' vendas em Comissões, ' + adsData.length + ' campanha(s) em ADS, e a base de conhecimento da marca.';
+    renderCerebroHistorico();
+  }
+
+  async function perguntarCerebroCentral() {
+    const pergunta = document.getElementById('cerebroPergunta').value.trim();
+    if (!pergunta) { alert('Escreve a pergunta antes de mandar pro Cérebro Central.'); return; }
+    const btn = document.getElementById('cerebroBtn');
+    const box = document.getElementById('cerebroOutputBox');
+    const out = document.getElementById('cerebroOutput');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Pensando…';
+
+    const contexto = montarContextoCentral();
+    const promptFinal =
+      'Você é o assistente de um pequeno negócio de conteúdo de beleza/skincare, feito por dois sócios (Samuel e Dani). ' +
+      'Abaixo está um retrato completo de tudo que eles têm registrado hoje na central de comando deles. ' +
+      'Use esses dados de verdade pra responder a pergunta — não invente números que não estão aí. ' +
+      'Se faltar dado pra responder algo com precisão, diga isso claramente em vez de chutar.\n\n' +
+      '===== DADOS ATUAIS DA CENTRAL =====\n\n' + contexto + '\n\n===== PERGUNTA =====\n' + pergunta;
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        out.value = 'Não consegui responder agora: ' + (data.error || res.status) + (data.detail ? ('\n\nDetalhe: ' + data.detail) : '');
+      } else {
+        out.value = data.text || '(a IA respondeu vazio — tenta reformular a pergunta)';
+        if (data.text) {
+          const agora = new Date();
+          cerebroHistorico.push({
+            pergunta: pergunta,
+            resposta: data.text,
+            dataLabel: agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+          if (cerebroHistorico.length > 100) cerebroHistorico = cerebroHistorico.slice(-100);
+          saveCerebroHistorico();
+          renderCerebroHistorico();
+        }
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      out.value = 'Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop (arrastar o HTML), essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  function copiarRespostaCerebro() {
+    const output = document.getElementById('cerebroOutput');
+    output.select();
+    output.setSelectionRange(0, 999999);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(output.value);
+      else document.execCommand('copy');
+    } catch (e) {}
+  }
+
+  // ---------- Ferramenta: Espião Semanal ----------
+  function loadEspiaoHistorico() {
+    try { const raw = localStorage.getItem('espiaoHistorico'); if (raw) return JSON.parse(raw); } catch (e) {}
+    return [];
+  }
+  function saveEspiaoHistorico() {
+    try { localStorage.setItem('espiaoHistorico', JSON.stringify(espiaoHistorico)); } catch (e) {}
+    cloudSet('espiaoHistorico', espiaoHistorico);
+  }
+  var espiaoHistorico = loadEspiaoHistorico();
+
+  function renderEspiaoHistorico() {
+    const box = document.getElementById('espHistoricoBox');
+    if (!box) return;
+    if (!espiaoHistorico.length) { box.innerHTML = '<div class="cs-empty">Nenhum relatório gerado ainda.</div>'; return; }
+    box.innerHTML = espiaoHistorico.slice().reverse().map(h =>
+      '<div class="cerebro-history-item">' +
+        '<div class="cerebro-history-q"><strong>' + escapeHtml(h.dataLabel) + '</strong> — ' + escapeHtml(h.canal) + (h.periodo ? ' · ' + escapeHtml(h.periodo) : '') + '</div>' +
+        '<div class="cerebro-history-a">' + escapeHtml(h.resposta) + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function initEspiaoTool() { renderEspiaoHistorico(); }
+
+  async function analisarEspiaoSemanal() {
+    const canal = document.getElementById('espCanal').value;
+    const periodo = document.getElementById('espPeriodo').value.trim();
+    const texto = document.getElementById('espTexto').value.trim();
+    if (!texto) { alert('Cola os comentários/posts antes de mandar analisar.'); return; }
+    const btn = document.getElementById('espBtn');
+    const box = document.getElementById('espOutputBox');
+    const card = document.getElementById('espResultCard');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Analisando…';
+
+    const promptFinal =
+      'Você é o Espião Semanal de um pequeno negócio de conteúdo de beleza/skincare de dois sócios (Samuel e Dani). ' +
+      'Abaixo está um texto bruto colado com comentários e/ou legendas de posts do canal ' + canal + (periodo ? ' no período ' + periodo : '') + '. ' +
+      'Leia tudo e responda em português, em texto corrido organizado com os seguintes blocos (use os títulos exatamente assim):\n' +
+      '"Temas mais comentados" (liste os principais temas/dúvidas que se repetem, com um exemplo de citação pra cada);\n' +
+      '"Perguntas frequentes" (liste as perguntas reais que aparecem, mesmo que reformuladas);\n' +
+      '"Sentimento geral" (classifique como Positivo, Neutro, Negativo ou Misto, com uma breve justificativa);\n' +
+      '"Alertas" (se houver reclamação repetida sobre algum produto específico — atraso, não funcionou, veio errado etc. — avise aqui; se não houver nada crítico, diga isso);\n' +
+      '"Sugestões de pauta" (3 ideias de vídeo pra próxima semana, cada uma com um gancho de abertura, baseadas no que apareceu aqui).\n' +
+      'Não invente dado que não está no texto colado — se algo não aparecer, diga que não apareceu.\n\n' +
+      '===== TEXTO COLADO =====\n\n' + texto;
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        card.innerHTML = '<div class="tool-result-explain">Não consegui analisar agora: ' + escapeHtml(data.error || String(res.status)) + (data.detail ? (' — ' + escapeHtml(data.detail)) : '') + '</div>';
+      } else {
+        const respostaTexto = data.text || '(resposta vazia — tenta colar mais texto ou reformular)';
+        card.innerHTML = '<h4>' + iconChip('sparkle') + 'Relatório de ' + escapeHtml(canal) + '</h4><div class="tool-result-explain" style="white-space:pre-line;">' + escapeHtml(respostaTexto) + '</div>';
+        if (data.text) {
+          const agora = new Date();
+          espiaoHistorico.push({
+            canal: canal, periodo: periodo, resposta: respostaTexto,
+            dataLabel: agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+          if (espiaoHistorico.length > 60) espiaoHistorico = espiaoHistorico.slice(-60);
+          saveEspiaoHistorico();
+          renderEspiaoHistorico();
+        }
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      card.innerHTML = '<div class="tool-result-explain">Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop, essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.</div>';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  // ---------- Ferramenta: Engenheiro Reverso de Concorrentes ----------
+  function loadEngenheiroHistorico() {
+    try { const raw = localStorage.getItem('engenheiroHistorico'); if (raw) return JSON.parse(raw); } catch (e) {}
+    return [];
+  }
+  function saveEngenheiroHistorico() {
+    try { localStorage.setItem('engenheiroHistorico', JSON.stringify(engenheiroHistorico)); } catch (e) {}
+    cloudSet('engenheiroHistorico', engenheiroHistorico);
+  }
+  var engenheiroHistorico = loadEngenheiroHistorico();
+
+  function renderEngenheiroHistorico() {
+    const box = document.getElementById('engHistoricoBox');
+    if (!box) return;
+    if (!engenheiroHistorico.length) { box.innerHTML = '<div class="cs-empty">Nenhuma análise gerada ainda.</div>'; return; }
+    box.innerHTML = engenheiroHistorico.slice().reverse().map(h =>
+      '<div class="cerebro-history-item">' +
+        '<div class="cerebro-history-q"><strong>' + escapeHtml(h.dataLabel) + '</strong>' + (h.contexto ? ' — ' + escapeHtml(h.contexto) : '') + '</div>' +
+        '<div class="cerebro-history-a">' + escapeHtml(h.resposta) + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function initEngenheiroTool() { renderEngenheiroHistorico(); }
+
+  async function analisarEngenheiroReverso() {
+    const texto = document.getElementById('engTexto').value.trim();
+    const contexto = document.getElementById('engContexto').value.trim();
+    if (!texto) { alert('Cola pelo menos um anúncio antes de mandar analisar.'); return; }
+    const btn = document.getElementById('engBtn');
+    const box = document.getElementById('engOutputBox');
+    const card = document.getElementById('engResultCard');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Analisando…';
+
+    const promptFinal =
+      'Você é o Engenheiro Reverso de Concorrentes de um pequeno negócio de conteúdo/afiliados de beleza e skincare de dois sócios (Samuel e Dani). ' +
+      'Abaixo estão textos de anúncios reais de contas concorrentes ou parecidas (copiados manualmente da Biblioteca de Anúncios do Meta ou de outra fonte pública).' +
+      (contexto ? (' Contexto adicional: ' + contexto + '.') : '') + ' ' +
+      'Analise e responda em português, organizado nestes blocos exatos:\n' +
+      '"Padrão de promessa" (qual resultado final está sendo prometido, não o recurso técnico);\n' +
+      '"Gatilhos e palavras-chave repetidas" (separe por Urgência, Prova social, Autoridade, Escassez — só cite o que realmente aparecer);\n' +
+      '"Estrutura de CTA" (que tipo de chamada pra ação cada anúncio usa: direto, brando ou relacional);\n' +
+      '"Público-alvo implícito" (pelo tom e linguagem, que perfil de pessoa esse anúncio mira);\n' +
+      '"Resumo do padrão vencedor" (um parágrafo com a fórmula geral que se repete);\n' +
+      '"Oportunidade para a marca" (sugestão concreta de como Samuel e Dani podem se diferenciar disso, sem copiar).\n' +
+      'Não invente dado que não está no texto colado.\n\n' +
+      '===== ANÚNCIOS COLADOS =====\n\n' + texto;
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        card.innerHTML = '<div class="tool-result-explain">Não consegui analisar agora: ' + escapeHtml(data.error || String(res.status)) + (data.detail ? (' — ' + escapeHtml(data.detail)) : '') + '</div>';
+      } else {
+        const respostaTexto = data.text || '(resposta vazia — tenta colar mais anúncios ou reformular)';
+        card.innerHTML = '<h4>' + iconChip('sparkle') + 'Padrões encontrados</h4><div class="tool-result-explain" style="white-space:pre-line;">' + escapeHtml(respostaTexto) + '</div>';
+        if (data.text) {
+          const agora = new Date();
+          engenheiroHistorico.push({
+            contexto: contexto, resposta: respostaTexto,
+            dataLabel: agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+          if (engenheiroHistorico.length > 60) engenheiroHistorico = engenheiroHistorico.slice(-60);
+          saveEngenheiroHistorico();
+          renderEngenheiroHistorico();
+        }
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      card.innerHTML = '<div class="tool-result-explain">Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop, essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.</div>';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  // ---------- Ferramenta: Trend Hunter ----------
+  function loadTrendHunterHistorico() {
+    try { const raw = localStorage.getItem('trendHunterHistorico'); if (raw) return JSON.parse(raw); } catch (e) {}
+    return [];
+  }
+  function saveTrendHunterHistorico() {
+    try { localStorage.setItem('trendHunterHistorico', JSON.stringify(trendHunterHistorico)); } catch (e) {}
+    cloudSet('trendHunterHistorico', trendHunterHistorico);
+  }
+  var trendHunterHistorico = loadTrendHunterHistorico();
+
+  function renderThHistorico() {
+    const box = document.getElementById('thHistoricoBox');
+    if (!box) return;
+    if (!trendHunterHistorico.length) { box.innerHTML = '<div class="cs-empty">Nenhuma leva de pautas gerada ainda.</div>'; return; }
+    box.innerHTML = trendHunterHistorico.slice().reverse().map(h =>
+      '<div class="cerebro-history-item">' +
+        '<div class="cerebro-history-q"><strong>' + escapeHtml(h.dataLabel) + '</strong> — ' + h.pautas.length + ' pauta(s)</div>' +
+        '<div class="cerebro-history-a">' + h.pautas.map(p => escapeHtml(p.titulo)).join(' · ') + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function initTrendHunterTool() {
+    const aprendizados = getAprendizadosAutomaticosLinhas();
+    const bons = aprendizados.itens.filter(it => it.marca === 'bom').length;
+    document.getElementById('thContextoResumo').innerHTML =
+      iconChip('barChart', 'icon-chip-sm') + 'Contexto que vai junto: ' + aprendizados.publicadosCount + ' vídeo(s) publicados com métrica cruzada (' + bons + ' marcado(s) como "performou bem"), ' +
+      (espiaoHistorico.length ? 'último relatório do Espião de ' + espiaoHistorico[espiaoHistorico.length - 1].canal + '.' : 'ainda sem relatório do Espião Semanal.');
+    renderThHistorico();
+  }
+
+  function montarContextoTrendHunter() {
+    const partes = [];
+    const aprendizados = getAprendizadosAutomaticosLinhas();
+    partes.push('APRENDIZADO AUTOMÁTICO (vídeos publicados cruzados com métricas e marcação bom/ruim):\n' +
+      (aprendizados.linhas.length ? aprendizados.linhas.join('\n') : '(nada registrado ainda)'));
+    if (espiaoHistorico.length) {
+      const ultimo = espiaoHistorico[espiaoHistorico.length - 1];
+      partes.push('ÚLTIMO RELATÓRIO DO ESPIÃO SEMANAL (' + ultimo.canal + ', ' + ultimo.dataLabel + '):\n' + ultimo.resposta);
+    }
+    if (engenheiroHistorico.length) {
+      const ultimo = engenheiroHistorico[engenheiroHistorico.length - 1];
+      partes.push('ÚLTIMA ANÁLISE DO ENGENHEIRO REVERSO DE CONCORRENTES (' + ultimo.dataLabel + '):\n' + ultimo.resposta);
+    }
+    return partes.join('\n\n');
+  }
+
+  async function gerarPautasTrendHunter() {
+    const extras = document.getElementById('thExtras').value.trim();
+    const btn = document.getElementById('thBtn');
+    const box = document.getElementById('thOutputBox');
+    const list = document.getElementById('thPautasList');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Gerando…';
+
+    const contexto = montarContextoTrendHunter();
+    const promptFinal =
+      'Você é o Trend Hunter de um pequeno negócio de conteúdo/afiliados de beleza e skincare de dois sócios (Samuel e Dani), com quadros de conteúdo fixos: ' +
+      '"Quadro 1 · Achadinhos de beleza", "Quadro 2 · Antes e depois honesto", "Quadro 3 · Tutorial de uso", "Quadro 4 · Review com demonstração real", "Quadro 5 · Comparativo de produtos", "Quadro 6 · Educativo com produto como solução". ' +
+      'Use os dados reais abaixo (aprendizado automático do que já performou, relatório do Espião Semanal e do Engenheiro Reverso, se houver) mais os temas extras colados, e gere 8 pautas de vídeo novas. ' +
+      'Responda APENAS com um JSON válido (sem markdown, sem texto antes ou depois), no formato: ' +
+      '[{"titulo":"...", "quadro":"um dos 6 quadros exatos acima", "hook":"frase de abertura de até 5 segundos", "justificativa":"por que essa pauta agora, citando o dado real que a embasa"}, ...]\n\n' +
+      '===== CONTEXTO REAL =====\n\n' + contexto + '\n\n===== TEMAS EXTRAS COLADOS =====\n' + (extras || '(nenhum tema extra colado)');
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        list.innerHTML = '<div class="tool-result-explain">Não consegui gerar agora: ' + escapeHtml(data.error || String(res.status)) + '</div>';
+      } else {
+        let pautas = null;
+        let raw = (data.text || '').trim();
+        raw = raw.replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
+        try { pautas = JSON.parse(raw); } catch (e) { pautas = null; }
+        if (Array.isArray(pautas) && pautas.length) {
+          list.innerHTML = pautas.map((p, i) => {
+            const pJson = JSON.stringify(p).replace(/'/g, '&#39;');
+            return '<div class="tool-result-card" style="margin-bottom:10px;">' +
+              '<h4>' + escapeHtml(p.titulo || 'Pauta ' + (i + 1)) + '</h4>' +
+              '<div class="tool-result-row"><span>Quadro</span><span>' + escapeHtml(p.quadro || '—') + '</span></div>' +
+              '<div class="tool-result-explain"><strong>Hook:</strong> ' + escapeHtml(p.hook || '—') + '</div>' +
+              '<div class="tool-result-explain"><strong>Por quê:</strong> ' + escapeHtml(p.justificativa || '—') + '</div>' +
+              '<button type="button" class="tool-generate-btn" style="margin-top:8px;" onclick=\'adicionarPautaAoConteudo(' + pJson + ')\'>' + iconSvg('plus') + ' Adicionar à aba Conteúdo</button>' +
+              '</div>';
+          }).join('');
+          const agora = new Date();
+          trendHunterHistorico.push({ pautas: pautas, dataLabel: agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) });
+          if (trendHunterHistorico.length > 40) trendHunterHistorico = trendHunterHistorico.slice(-40);
+          saveTrendHunterHistorico();
+          renderThHistorico();
+        } else {
+          list.innerHTML = '<div class="tool-result-explain">A IA não devolveu um formato reconhecível dessa vez. Resposta bruta:<br><br><span style="white-space:pre-line;">' + escapeHtml(data.text || '(vazio)') + '</span></div>';
+        }
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      list.innerHTML = '<div class="tool-result-explain">Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop, essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.</div>';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  function adicionarPautaAoConteudo(pauta) {
+    contentData.push({
+      id: Date.now() + Math.floor(Math.random() * 1000),
+      titulo: pauta.titulo || 'Pauta sem título',
+      quadro: pauta.quadro || '',
+      descricao: (pauta.hook ? 'Hook: ' + pauta.hook + '. ' : '') + (pauta.justificativa || ''),
+      status: 'ideia',
+      data: ''
+    });
+    saveContentData();
+    if (typeof renderContentBoard === 'function') renderContentBoard();
+    alert('Pauta adicionada à aba Conteúdo como ideia.');
+  }
+
+  // ---------- Ferramenta: Pautista Estratégico Preditivo ----------
+  function loadPautistaHistorico() {
+    try { const raw = localStorage.getItem('pautistaHistorico'); if (raw) return JSON.parse(raw); } catch (e) {}
+    return [];
+  }
+  function savePautistaHistorico() {
+    try { localStorage.setItem('pautistaHistorico', JSON.stringify(pautistaHistorico)); } catch (e) {}
+    cloudSet('pautistaHistorico', pautistaHistorico);
+  }
+  var pautistaHistorico = loadPautistaHistorico();
+
+  function renderPautistaHistorico() {
+    const box = document.getElementById('ptHistoricoBox');
+    if (!box) return;
+    if (!pautistaHistorico.length) { box.innerHTML = '<div class="cs-empty">Nenhuma pauta mestra gerada ainda.</div>'; return; }
+    box.innerHTML = pautistaHistorico.slice().reverse().map(h =>
+      '<div class="cerebro-history-item">' +
+        '<div class="cerebro-history-q"><strong>' + escapeHtml(h.mes) + '</strong> — ' + escapeHtml(h.dataLabel) + '</div>' +
+        '<div class="cerebro-history-a">' + escapeHtml(h.resposta.slice(0, 300)) + (h.resposta.length > 300 ? '…' : '') + '</div>' +
+      '</div>'
+    ).join('');
+  }
+
+  function initPautistaTool() { renderPautistaHistorico(); }
+
+  async function gerarPautaMestraDoMes() {
+    const mes = document.getElementById('ptMes').value.trim();
+    const objetivo = document.getElementById('ptObjetivo').value.trim();
+    const datas = document.getElementById('ptDatas').value.trim();
+    if (!mes) { alert('Preenche o mês de planejamento antes de gerar.'); return; }
+    const btn = document.getElementById('ptBtn');
+    const box = document.getElementById('ptOutputBox');
+    const out = document.getElementById('ptOutput');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Montando…';
+
+    const contextoCentral = montarContextoCentral();
+    let pautasRecentes = 'Nenhuma leva de pautas do Trend Hunter ainda.';
+    if (trendHunterHistorico.length) {
+      const ultima = trendHunterHistorico[trendHunterHistorico.length - 1];
+      pautasRecentes = ultima.pautas.map(p => '- ' + p.titulo + ' (' + p.quadro + ') — hook: ' + p.hook).join('\n');
+    }
+
+    const promptFinal =
+      'Você é o Pautista Estratégico Preditivo de um pequeno negócio de conteúdo/afiliados de beleza e skincare, de dois sócios (Samuel e Dani) — não é uma agência com clientes externos, é o próprio canal deles. ' +
+      'Monte a pauta mestra do mês "' + mes + '"' + (objetivo ? (', com o objetivo de ' + objetivo) : '') + '. ' +
+      'Use os dados reais abaixo (retrato completo da central: conteúdo, métricas, comissões, ADS) e as pautas mais recentes já levantadas pelo Trend Hunter. ' +
+      (datas ? ('Datas e eventos relevantes do mês, informados por eles: ' + datas + '.') : 'Eles não informaram datas específicas — se souber de datas sazonais relevantes pro nicho de beleza nesse mês, pode sugerir, deixando claro que é uma suposição sua.') + ' ' +
+      'Estruture a resposta em texto corrido organizado com estes blocos:\n' +
+      '"Contexto do mês" (o que costuma mover o comportamento do público de beleza nesse período, e as datas relevantes);\n' +
+      '"Calendário semana a semana" (divida em até 4 semanas, cada uma com 2-4 pautas, dizendo título, quadro e um motivo curto — priorize as pautas do Trend Hunter listadas abaixo quando fizerem sentido, mas pode sugerir outras);\n' +
+      '"Prioridades do mês" (com base no que já performou bem e no objetivo informado, o que merece mais atenção);\n' +
+      '"Próximos passos" (2-3 ações práticas pra Samuel e Dani nessa semana).\n' +
+      'Não invente números financeiros que não estão nos dados reais.\n\n' +
+      '===== DADOS ATUAIS DA CENTRAL =====\n\n' + contextoCentral + '\n\n===== PAUTAS RECENTES DO TREND HUNTER =====\n' + pautasRecentes;
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        out.value = 'Não consegui gerar agora: ' + (data.error || res.status) + (data.detail ? ('\n\nDetalhe: ' + data.detail) : '');
+      } else {
+        out.value = data.text || '(a IA respondeu vazio — tenta rodar de novo)';
+        if (data.text) {
+          const agora = new Date();
+          pautistaHistorico.push({ mes: mes, objetivo: objetivo, resposta: data.text, dataLabel: agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) });
+          if (pautistaHistorico.length > 30) pautistaHistorico = pautistaHistorico.slice(-30);
+          savePautistaHistorico();
+          renderPautistaHistorico();
+        }
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      out.value = 'Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop, essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  function copiarPautaMestra() {
+    const output = document.getElementById('ptOutput');
+    output.select();
+    output.setSelectionRange(0, 999999);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(output.value);
+      else document.execCommand('copy');
+    } catch (e) {}
   }
 
   // ---------- Mood meter compartilhado (triste / ok / feliz) ----------
@@ -3450,14 +4860,10 @@
     document.getElementById('vbComissaoPct').value = opt.dataset.comissao;
   }
 
-  function calcularViabilidade() {
-    const nome = document.getElementById('vbNome').value.trim() || 'Produto sem nome';
-    const preco = parseFloat(document.getElementById('vbPreco').value) || 0;
-    const comissaoPct = parseFloat(document.getElementById('vbComissaoPct').value) || 0;
-    const quadro = document.getElementById('vbQuadro').value;
-    const tempoMin = parseFloat(document.getElementById('vbTempo').value) || 0;
-    const plataforma = document.getElementById('vbPlataforma').value;
-
+  // Motor de score reaproveitado pelo Assistente de Viabilidade E pelo Comparador de Produto A vs B.
+  // custoAnuncio é opcional — só entra como 4º fator quando preenchido (pensando na futura conexão
+  // com ADS: quanto custaria de anúncio pago pra empurrar esse produto, e se ainda compensa).
+  function calcularScoreViabilidadeCore(preco, comissaoPct, plataforma, custoAnuncio) {
     const comissaoReais = preco * (comissaoPct / 100);
     const TICKET_MEDIO = 165; // Ebit Nielsen, via babitonhela.com — ticket médio beleza/cosméticos Brasil
     const benchmarkComissao = TICKET_MEDIO * 0.15; // ~R$24,75 — referência de comissão "razoável"
@@ -3467,18 +4873,47 @@
     const factorPct = Math.max(0, Math.min(1, comissaoPct / 30)); // 30% = teto observado (Shopee, não oficial)
 
     const conv = getConversaoRealPlataforma(plataforma);
-    let score, explicacaoConv;
+    const fatores = [factorValor, factorPct];
+    let explicacaoConv;
     if (conv) {
       const factorConv = Math.max(0, Math.min(1, conv.valor / CONVERSAO_MADURA));
-      score = ((factorValor + factorPct + factorConv) / 3) * 100;
-      explicacaoConv = ' Um terço do score também considera a conversão real registrada na aba Métricas pra ' + plataforma + ' (' + conv.valor.toFixed(2).replace('.', ',') + '%, de ' + conv.data + '), comparada com a conversão "madura" de e-commerce no Brasil (2,5-3%, fonte Avantare).';
+      fatores.push(factorConv);
+      explicacaoConv = ' Uma parte do score também considera a conversão real registrada na aba Métricas pra ' + plataforma + ' (' + conv.valor.toFixed(2).replace('.', ',') + '%, de ' + conv.data + '), comparada com a conversão "madura" de e-commerce no Brasil (2,5-3%, fonte Avantare).';
     } else {
-      score = ((factorValor + factorPct) / 2) * 100;
       explicacaoConv = ' Ainda sem registro de conversão real para ' + plataforma + ' na aba Métricas — assim que você lançar um lá, o score passa a considerar isso também.';
     }
 
+    let lucroPosAnuncio = null, explicacaoAnuncio = '';
+    if (custoAnuncio && custoAnuncio > 0) {
+      lucroPosAnuncio = comissaoReais - custoAnuncio;
+      const factorAnuncio = comissaoReais > 0 ? Math.max(0, Math.min(1, lucroPosAnuncio / comissaoReais)) : 0;
+      fatores.push(factorAnuncio);
+      explicacaoAnuncio = ' O 4º fator considera o custo estimado de impulsionamento (R$ ' + custoAnuncio.toFixed(2).replace('.', ',') + '): sobra R$ ' + lucroPosAnuncio.toFixed(2).replace('.', ',') + ' de lucro por venda depois de descontar esse custo, o que ' + (lucroPosAnuncio > 0 ? 'ainda compensa' : 'não compensa mais') + '.';
+    }
+
+    const score = (fatores.reduce((a, b) => a + b, 0) / fatores.length) * 100;
+    return { comissaoReais: comissaoReais, benchmarkComissao: benchmarkComissao, score: score, explicacaoConv: explicacaoConv, explicacaoAnuncio: explicacaoAnuncio, lucroPosAnuncio: lucroPosAnuncio };
+  }
+
+  function calcularViabilidade() {
+    const nome = document.getElementById('vbNome').value.trim() || 'Produto sem nome';
+    const preco = parseFloat(document.getElementById('vbPreco').value) || 0;
+    const comissaoPct = parseFloat(document.getElementById('vbComissaoPct').value) || 0;
+    const quadro = document.getElementById('vbQuadro').value;
+    const tempoMin = parseFloat(document.getElementById('vbTempo').value) || 0;
+    const plataforma = document.getElementById('vbPlataforma').value;
+    const custoAnuncioInput = document.getElementById('vbCustoAnuncio').value;
+    const custoAnuncio = custoAnuncioInput === '' ? null : parseFloat(custoAnuncioInput);
+
+    const r = calcularScoreViabilidadeCore(preco, comissaoPct, plataforma, custoAnuncio);
+    const comissaoReais = r.comissaoReais;
+    const score = r.score;
+
     const mood = renderMoodMeter('vbMoodMeter', score);
-    const moodLabel = mood === 'happy' ? 'Vale a pena gravar — prioridade alta' : mood === 'ok' ? 'Dá pra gravar, mas sem prioridade' : 'Não compensa priorizar esse produto agora';
+    let moodLabel = mood === 'happy' ? 'Vale a pena gravar — prioridade alta' : mood === 'ok' ? 'Dá pra gravar, mas sem prioridade' : 'Não compensa priorizar esse produto agora';
+    if (r.lucroPosAnuncio !== null) {
+      moodLabel = (r.lucroPosAnuncio > 0 ? 'Vale a pena gravar E impulsionar' : moodLabel);
+    }
 
     let horaLine = '';
     if (tempoMin > 0) {
@@ -3486,13 +4921,18 @@
       horaLine = '<div class="tool-result-row"><span>Retorno por hora de produção</span><span>R$ ' + porHora.toFixed(2).replace('.', ',') + '/h</span></div>';
     }
 
+    let anuncioLine = '';
+    if (r.lucroPosAnuncio !== null) {
+      anuncioLine = '<div class="tool-result-row"><span>Lucro estimado após custo de anúncio</span><span>R$ ' + r.lucroPosAnuncio.toFixed(2).replace('.', ',') + '</span></div>';
+    }
+
     document.getElementById('vbResultCard').innerHTML =
       '<h4>' + escapeHtml(nome) + ' — ' + moodLabel + '</h4>' +
       '<div class="tool-result-row"><span>Comissão por venda</span><span>R$ ' + comissaoReais.toFixed(2).replace('.', ',') + '</span></div>' +
       '<div class="tool-result-row"><span>Score de viabilidade</span><span>' + score.toFixed(0) + '%</span></div>' +
       '<div class="tool-result-row"><span>Quadro pretendido</span><span>' + escapeHtml(quadro) + '</span></div>' +
-      horaLine +
-      '<div class="tool-result-explain">Cálculo: uma parte do score vem de quanto a comissão em R$ está perto/acima de 2× o valor de referência (R$ ' + benchmarkComissao.toFixed(2).replace('.', ',') + ', que é 15% do ticket médio real de beleza no Brasil, R$165 — Ebit Nielsen); outra parte vem de quanto o % de comissão está perto do teto observado no setor (30%, ainda não confirmado oficialmente pela Shopee).' + explicacaoConv + '</div>';
+      horaLine + anuncioLine +
+      '<div class="tool-result-explain">Cálculo: uma parte do score vem de quanto a comissão em R$ está perto/acima de 2× o valor de referência (R$ ' + r.benchmarkComissao.toFixed(2).replace('.', ',') + ', que é 15% do ticket médio real de beleza no Brasil, R$165 — Ebit Nielsen); outra parte vem de quanto o % de comissão está perto do teto observado no setor (30%, ainda não confirmado oficialmente pela Shopee).' + r.explicacaoConv + r.explicacaoAnuncio + '</div>';
 
     document.getElementById('vbOutputBox').style.display = 'block';
   }
@@ -3619,6 +5059,90 @@
     // Recalcula o total certo (sem o efeito do reverse acima, que soma igual mas por clareza refaz)
     total = comissaoEntries.reduce((sum, e) => sum + e.comissaoLiquida, 0);
     totalEl.textContent = 'Total líquido: R$ ' + total.toFixed(2).replace('.', ',');
+    popularSelectPlataformaComissao();
+    renderComissaoChart();
+  }
+
+  // ---------- Tendência de comissão líquida por plataforma ----------
+  // Mostra se uma plataforma está sistematicamente pagando menos que outra ao longo do tempo —
+  // mesmo motor visual (SVG nativo) usado nos gráficos da aba Métricas.
+  function popularSelectPlataformaComissao() {
+    const select = document.getElementById('csChartPlataforma');
+    if (!select) return;
+    const atual = select.value;
+    const plataformas = Array.from(new Set(comissaoEntries.map(e => e.plataforma).filter(Boolean))).sort();
+    select.innerHTML = '<option value="__todas__">Todas as plataformas (comparativo)</option>' +
+      plataformas.map(p => '<option value="' + escapeHtml(p) + '">' + escapeHtml(p) + '</option>').join('');
+    if (plataformas.includes(atual) || atual === '__todas__') select.value = atual;
+  }
+
+  function renderComissaoChart() {
+    const el = document.getElementById('csChart');
+    const select = document.getElementById('csChartPlataforma');
+    if (!el || !select) return;
+    const modo = select.value;
+
+    if (!comissaoEntries.length) {
+      el.innerHTML = '<div class="cs-empty">Sem lançamentos ainda pra plotar.</div>';
+      return;
+    }
+
+    if (modo === '__todas__') {
+      // Comparativo: média de comissão líquida por plataforma, barra simples em SVG.
+      const porPlataforma = {};
+      comissaoEntries.forEach(e => {
+        if (!e.plataforma) return;
+        if (!porPlataforma[e.plataforma]) porPlataforma[e.plataforma] = [];
+        porPlataforma[e.plataforma].push(e.comissaoLiquida);
+      });
+      const nomes = Object.keys(porPlataforma);
+      if (!nomes.length) { el.innerHTML = '<div class="cs-empty">Sem lançamentos ainda pra plotar.</div>'; return; }
+      const medias = nomes.map(n => porPlataforma[n].reduce((a, b) => a + b, 0) / porPlataforma[n].length);
+      const maxV = Math.max(...medias, 0.01);
+      const W = 640, H = 180, barW = Math.min(90, (W - 40) / nomes.length - 20);
+      let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="180">';
+      nomes.forEach((n, i) => {
+        const x = 30 + i * ((W - 40) / nomes.length);
+        const h = (medias[i] / maxV) * (H - 50);
+        const y = H - 30 - h;
+        svg += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + barW + '" height="' + h.toFixed(1) + '" rx="4" fill="#b6795f"/>';
+        svg += '<text x="' + (x + barW / 2).toFixed(1) + '" y="' + (y - 6).toFixed(1) + '" font-size="10" fill="#2b2320" text-anchor="middle">R$ ' + medias[i].toFixed(0) + '</text>';
+        svg += '<text x="' + (x + barW / 2).toFixed(1) + '" y="' + (H - 12) + '" font-size="9" fill="#8a7a70" text-anchor="middle">' + escapeHtml(n) + '</text>';
+      });
+      svg += '</svg>';
+      el.innerHTML = '<div style="font-size:11.5px;color:var(--muted);margin-bottom:4px;">Comissão líquida média por plataforma</div>' + svg;
+      return;
+    }
+
+    const entries = comissaoEntries.filter(e => e.plataforma === modo && e.data).slice().sort((a, b) => a.data.localeCompare(b.data));
+    if (entries.length < 1) {
+      el.innerHTML = '<div class="cs-empty">Sem registros com data pra essa plataforma ainda.</div>';
+      return;
+    }
+    const W = 640, H = 180, padL = 40, padR = 16, padT = 16, padB = 30;
+    const values = entries.map(e => e.comissaoLiquida);
+    const maxV = Math.max(...values, 0.0001);
+    const minV = Math.min(...values, 0);
+    const range = (maxV - minV) || 1;
+    const stepX = entries.length > 1 ? (W - padL - padR) / (entries.length - 1) : 0;
+    const points = entries.map((e, i) => {
+      const x = padL + stepX * i;
+      const y = padT + (H - padT - padB) * (1 - (e.comissaoLiquida - minV) / range);
+      return { x: x, y: y, v: e.comissaoLiquida, data: e.data };
+    });
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="180">';
+    svg += '<line x1="' + padL + '" y1="' + (H - padB) + '" x2="' + (W - padR) + '" y2="' + (H - padB) + '" stroke="var(--line)" stroke-width="1"/>';
+    if (points.length > 1) {
+      const path = points.map((p, i) => (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ');
+      svg += '<path d="' + path + '" fill="none" stroke="#b6795f" stroke-width="2.5"/>';
+    }
+    points.forEach(p => {
+      svg += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="4" fill="#8f5642"/>';
+      svg += '<text x="' + p.x.toFixed(1) + '" y="' + (p.y - 10).toFixed(1) + '" font-size="10" fill="#2b2320" text-anchor="middle">R$ ' + p.v.toFixed(0) + '</text>';
+      svg += '<text x="' + p.x.toFixed(1) + '" y="' + (H - padB + 16) + '" font-size="9" fill="#8a7a70" text-anchor="middle">' + escapeHtml(String(p.data || '')) + '</text>';
+    });
+    svg += '</svg>';
+    el.innerHTML = '<div style="font-size:11.5px;color:var(--muted);margin-bottom:4px;">Comissão líquida — ' + escapeHtml(modo) + '</div>' + svg;
   }
 
   // ---------- Ferramenta: Central de Prioridade do Dia ----------
@@ -3677,6 +5201,48 @@
     document.getElementById('prioridadeOutputBox').style.display = 'block';
   }
 
+  // Versão com IA: mesmo contexto amplo do Cérebro Central, mas já pergunta sozinha "qual o
+  // foco de hoje" — não precisa você escrever nada, só clicar. Pega nuance que uma regra fixa
+  // (if X then Y) não capta.
+  async function gerarPrioridadeComIA() {
+    const btn = document.getElementById('prioridadeIaBtn');
+    const box = document.getElementById('prioridadeIaOutputBox');
+    const card = document.getElementById('prioridadeIaResultCard');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Analisando…';
+
+    const contexto = montarContextoCentral();
+    const promptFinal =
+      'Você é o assistente de um pequeno negócio de conteúdo de beleza/skincare, feito por dois sócios (Samuel e Dani). ' +
+      'Abaixo está um retrato completo de tudo que eles têm registrado hoje na central de comando deles. ' +
+      'Sua tarefa: olhando pra tudo isso, diga qual deveria ser o foco principal de hoje — em 3 a 5 frases curtas, direto ao ponto, ' +
+      'priorizando o que tem mais urgência ou maior potencial de retorno. Use os dados reais, não invente números. ' +
+      'Se não houver informação suficiente pra uma recomendação segura, diga isso.\n\n' +
+      '===== DADOS ATUAIS DA CENTRAL =====\n\n' + contexto;
+
+    try {
+      const res = await fetch('/.netlify/functions/gerar-roteiro', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, cloudToken ? { 'x-access-token': cloudToken } : {}),
+        body: JSON.stringify({ prompt: promptFinal })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        card.innerHTML = '<div class="tool-result-explain">Não consegui gerar agora: ' + escapeHtml(data.error || String(res.status)) + '</div>';
+      } else {
+        card.innerHTML = '<h4>' + iconChip('sparkle') + 'Sugestão da IA</h4><div class="tool-result-explain" style="white-space:pre-line;">' + escapeHtml(data.text || '(resposta vazia)') + '</div>';
+      }
+      box.style.display = 'block';
+    } catch (e) {
+      card.innerHTML = '<div class="tool-result-explain">Não consegui conectar com a função de IA. Se o site foi publicado direto pelo Netlify Drop, essa função não existe nessa versão — precisa ser a versão publicada via GitHub, com o back-end junto.</div>';
+      box.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
   // ---------- Ferramenta: Gerador de Checklist de Roteiro ----------
   const CHECKLIST_POR_QUADRO = {
     'Quadro 1 · Achadinhos de beleza': ['Produto mostrado claramente (embalagem + uso)', 'Curiosidade ou dado que a audiência não sabia', 'Preço/custo-benefício mencionado', 'Gancho nos 3 primeiros segundos', 'Link de compra no final/bio'],
@@ -3702,37 +5268,60 @@
   function gerarChecklistRoteiro() {
     const quadro = document.getElementById('clQuadro').value;
     const itens = CHECKLIST_POR_QUADRO[quadro] || ['Ainda não temos checklist específico pra esse quadro — usando o padrão: gancho forte, produto claro, e link/CTA no final.'];
-    document.getElementById('checklistResultCard').innerHTML =
-      '<h4>' + escapeHtml(quadro) + '</h4>' +
+    let html = '<h4>' + escapeHtml(quadro) + '</h4>' +
       itens.map(i => '<div class="priority-item"><span class="priority-icon">' + '<span class="icon-chip icon-chip-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/></svg></span>' + '</span><span>' + escapeHtml(i) + '</span></div>').join('');
+
+    const aprendizados = getAprendizadosAutomaticosLinhas();
+    const itensDoQuadro = aprendizados.itens.filter(it => it.quadro === quadro);
+    if (itensDoQuadro.length) {
+      const bons = itensDoQuadro.filter(it => it.marca === 'bom');
+      const ruins = itensDoQuadro.filter(it => it.marca === 'ruim');
+      let txtAprendizado = 'Nos últimos vídeos publicados desse quadro (' + itensDoQuadro.length + ' registro(s) de métrica encontrados), ';
+      if (bons.length || ruins.length) {
+        const partes = [];
+        if (bons.length) partes.push(bons.length + ' foram marcados como "performou bem"');
+        if (ruins.length) partes.push(ruins.length + ' foram marcados como "não performou"');
+        txtAprendizado += partes.join(' e ') + '. Use isso pra repetir o que funcionou e ajustar o que não funcionou.';
+      } else {
+        txtAprendizado += 'ainda não há marcação de bom/ruim — marque o desempenho no Assistente de Roteiro pra esse checklist ficar mais afiado com o tempo.';
+      }
+      html += '<div class="tool-result-explain" style="margin-top:14px;"><strong>Aprendizado desse quadro:</strong> ' + escapeHtml(txtAprendizado) + '</div>';
+    } else {
+      html += '<div class="tool-result-explain" style="margin-top:14px;">Ainda não há vídeos publicados desse quadro com métricas registradas — assim que tiver, esse checklist vai puxar automaticamente o que funcionou e o que não funcionou nos últimos vídeos.</div>';
+    }
+
+    document.getElementById('checklistResultCard').innerHTML = html;
   }
 
   // ---------- Ferramenta: Comparador de Produto A vs B ----------
   function compararProdutos() {
     const nomeA = document.getElementById('cpNomeA').value.trim() || 'Produto A';
+    const plataformaA = document.getElementById('cpPlataformaA').value;
     const precoA = parseFloat(document.getElementById('cpPrecoA').value) || 0;
     const comA = parseFloat(document.getElementById('cpComissaoA').value) || 0;
     const nomeB = document.getElementById('cpNomeB').value.trim() || 'Produto B';
+    const plataformaB = document.getElementById('cpPlataformaB').value;
     const precoB = parseFloat(document.getElementById('cpPrecoB').value) || 0;
     const comB = parseFloat(document.getElementById('cpComissaoB').value) || 0;
 
-    const ganhoA = precoA * (comA / 100);
-    const ganhoB = precoB * (comB / 100);
+    const resA = calcularScoreViabilidadeCore(precoA, comA, plataformaA, null);
+    const resB = calcularScoreViabilidadeCore(precoB, comB, plataformaB, null);
+
     let veredito;
-    if (Math.abs(ganhoA - ganhoB) < 0.01) veredito = 'Empate técnico — os dois rendem praticamente o mesmo por venda.';
-    else veredito = (ganhoA > ganhoB ? escapeHtml(nomeA) : escapeHtml(nomeB)) + ' rende mais por venda.';
+    if (Math.abs(resA.score - resB.score) < 1) veredito = 'Empate técnico — os dois valem praticamente o mesmo pra gravar.';
+    else veredito = (resA.score > resB.score ? escapeHtml(nomeA) : escapeHtml(nomeB)) + ' vale mais a pena gravar.';
 
     document.getElementById('comparadorResultCard').innerHTML =
       '<h4>' + veredito + '</h4>' +
-      '<div class="tool-result-row"><span>' + escapeHtml(nomeA) + '</span><span>R$ ' + ganhoA.toFixed(2).replace('.', ',') + ' por venda</span></div>' +
-      '<div class="tool-result-row"><span>' + escapeHtml(nomeB) + '</span><span>R$ ' + ganhoB.toFixed(2).replace('.', ',') + ' por venda</span></div>' +
-      '<div class="tool-result-explain">Cálculo simples: preço × comissão. Pra decisão mais completa, cruze com o Assistente de Viabilidade de cada um (considera também comparação com o mercado).</div>';
+      '<div class="tool-result-row"><span>' + escapeHtml(nomeA) + ' (' + escapeHtml(plataformaA) + ')</span><span>R$ ' + resA.comissaoReais.toFixed(2).replace('.', ',') + ' por venda · score ' + resA.score.toFixed(0) + '/100</span></div>' +
+      '<div class="tool-result-row"><span>' + escapeHtml(nomeB) + ' (' + escapeHtml(plataformaB) + ')</span><span>R$ ' + resB.comissaoReais.toFixed(2).replace('.', ',') + ' por venda · score ' + resB.score.toFixed(0) + '/100</span></div>' +
+      '<div class="tool-result-explain">O score usa o mesmo motor do Assistente de Viabilidade: não é só quem paga mais por venda, e sim quem tem melhor combinação de valor de comissão, percentual e (quando existe) conversão real registrada na plataforma. Cálculo bruto de comissão: preço × comissão%.</div>';
     document.getElementById('comparadorOutputBox').style.display = 'block';
   }
 
   // ---------- Ferramenta: Backup de Dados ----------
   // Tudo aqui vive só no localStorage do navegador — isso exporta/importa pra não perder nada.
-  const BACKUP_KEYS = ['contentData', 'comissaoEntries', 'metricsData', 'roteiroKB'];
+  const BACKUP_KEYS = ['contentData', 'comissaoEntries', 'metricsData', 'roteiroKB', 'adsData', 'cerebroHistorico', 'espiaoHistorico', 'engenheiroHistorico', 'trendHunterHistorico', 'pautistaHistorico'];
   function exportarBackup() {
     const backup = {};
     BACKUP_KEYS.forEach(k => {
@@ -4708,7 +6297,7 @@
       '.icon-demo, .phase, .assign-box, .insight-block, .persona-field, .benchmark-chip, ' +
       '.voice-col, .word-chip, .badge, .score-row, .score-bar-track, .cost-table, table, ' +
       '.tool-card, .locked-construction, .content-add-card, .content-col, .content-calendar-card, ' +
-      '.metric-form-card, .metric-compare-card, .metric-panel.active > *'
+      '.metric-form-card, .metric-compare-card, .metric-panel.active > *, .extension-card, .ads-campaign-card'
     );
     let i = 0;
     const apply = (el, delay) => {
